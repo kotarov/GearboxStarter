@@ -10,7 +10,7 @@
 			<h1> {{ article.title }}</h1>
 			<p>
 				<i>Date: <b>{{ new Date(article.date).toLocaleDateString("en-US",{year:'numeric',month:'long',day:'numeric'}) }}</b> </i>  <br>
-				<i>By: <a href="#">{{ article.author }}</a> </i>
+				<i>By: <router-link :to="'/Search/'+article.author">{{ article.author }}</router-link> </i>
 			</p>
 			<div v-if="article.image" style="background-size:cover;width:100%;height:400px;background-position:center" 
 				:style="{'background-image':'url('+$store.getters.imageUrl(article)+')'}"></div>
