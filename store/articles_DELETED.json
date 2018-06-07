@@ -1,0 +1,25 @@
+[
+    {
+        "_collection": "articles_deleted",
+        "title": "първата истрита статия",
+        "alt": "Това е първата изтрита статия",
+        "src": "",
+        "id": 1527594042
+    },
+    {
+        "title": "svetlio",
+        "alt": "kotarov",
+        "src": "marinov.html",
+        "id": 1526540079,
+        "isActive": 1,
+        "image": "cover.png",
+        "_collection": "articles_DELETED"
+    },
+    {
+        "_collection": "articles_DELETED",
+        "title": "sssssssssssssss",
+        "alt": "sssssssss",
+        "id": 1527696229,
+        "_rowVariant": "info"
+    }
+]

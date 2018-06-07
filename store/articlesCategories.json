@@ -1,0 +1,37 @@
+[
+    {
+        "id": "lifestyle",
+        "title": "Lifestyle",
+        "image": "",
+        "_collection": "articlesCategories",
+        "descr": "Opisanie"
+    },
+    {
+        "id": "sport",
+        "title": "Sport"
+    },
+    {
+        "id": "history",
+        "title": "History",
+        "_collection": "articlesCategories",
+        "descr": "Исторически данни"
+    },
+    {
+        "_collection": "articlesCategories",
+        "title": "Обучение",
+        "descr": "Категория за обучения",
+        "id": "tutorial"
+    },
+    {
+        "_collection": "articlesCategories",
+        "id": "политика",
+        "title": "Политика",
+        "descr": "Политически блог"
+    },
+    {
+        "_collection": "articlesCategories",
+        "id": "наука",
+        "title": "Наука",
+        "descr": ""
+    }
+]

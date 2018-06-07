@@ -1,0 +1,45 @@
+[
+    {
+        "id": "1",
+        "title": "The first Stop-motion video created with the kids in our Stop-motion workshop",
+        "alt": "first stop motion",
+        "src": "\/\/player.vimeo.com\/video\/163426723?autoplay=false&loop=false&byline=false&portrait=false&title=false"
+    },
+    {
+        "id": "2",
+        "title": "The Vanilla Kitchen project we created for Creative Business Cup competition",
+        "alt": "vanilla kitchen",
+        "src": "\/\/www.youtube.com\/embed\/IiVVciAiisU?wmode=transparent&autoplay=0&theme=dark&controls=1&autohide=0&loop=0&showinfo=0&rel=0&playlist=false&enablejsapi=0"
+    },
+    {
+        "id": "3",
+        "title": "The Salty-Malty stop-motion movie",
+        "alt": "salty-malty",
+        "src": "\/\/player.vimeo.com\/video\/179172993?autoplay=false&loop=false&byline=false&portrait=false&title=false"
+    },
+    {
+        "id": "4",
+        "title": "Commercial made by the kids in our 11-09-16 Animation workshop",
+        "alt": "",
+        "src": "\/\/player.vimeo.com\/video\/182301350?autoplay=false&loop=false&byline=false&portrait=false&title=false"
+    },
+    {
+        "id": "5",
+        "title": "Animation made by the kids in our 16-10-16 Animation workshop",
+        "alt": "",
+        "src": "\/\/player.vimeo.com\/video\/187574350?autoplay=false&loop=false&byline=false&portrait=false&title=false"
+    },
+    {
+        "id": "6",
+        "title": "Instagram video",
+        "alt": "",
+        "src": "https:\/\/scontent-sof1-1.cdninstagram.com\/vp\/94d1fd51ba7de871ab561f673de0c679\/5AFE34BF\/t50.2886-16\/32072110_180682766089736_2721875321283411968_n.mp4"
+    },
+    {
+        "id": "7",
+        "title": "Facebook video1",
+        "alt": "",
+        "src_": "https:\/\/www.facebook.com\/foamprotocol\/videos\/10100817876036841\/",
+        "src": "https:\/\/www.facebook.com\/100009058127123\/videos\/1992967964348455\/?t=0"
+    }
+]
