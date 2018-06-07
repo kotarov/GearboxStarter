@@ -6,7 +6,7 @@
   <div class="" style="height:35px;background:#eaeaea;"></div>
   <div class="card-body">
   	<div class="media">
-	  	<img class="mr-3" width="100px" src="../assets/img/avatar.jpg">
+	  	<img class="mr-3" width="100px" src="assets/img/avatar.jpg">
 	    <div class="media-body">
 		    <h5 class="card-title">{{ $store.getters.userFullName }}</h5>
 		    <p class="card-text">
