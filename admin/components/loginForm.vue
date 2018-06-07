@@ -12,6 +12,8 @@
       <div class="checkbox mb-3"> <label class="text-muted"> <input type="checkbox" value="remember-me" disabled> Remember me </label> </div>
       
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+      <br> <p style="color:#aaa"> user: demo <br> pass: 11111 </p>
     </form>
   </div>
 </template>
