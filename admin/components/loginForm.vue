@@ -13,7 +13,7 @@
       
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-      <br> <p style="color:#aaa"> user: demo <br> pass: 11111 </p>
+      <br> <p style="color:#aaa"> user: demo<br> pass: 11111</p>
     </form>
   </div>
 </template>
