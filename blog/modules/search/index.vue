@@ -20,6 +20,9 @@
 	<div class="row">
         <div class="col-md-9 blog-main">
           
+          <p><i>Found posts: <b>{{ items.length }}</b></i></p>
+          <hr>
+          <br>
 
           <div v-for="item of items" class="blog-post">
             <router-link :to="$store.getters.articleUrl(item)"  class="text-dark">
