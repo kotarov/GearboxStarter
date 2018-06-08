@@ -41,14 +41,23 @@ const blogStore = {
 			}
 		},
 
-		existingDates(state){
-			let items = []
+		historyInfo(state){
+			let ret = {}
+
 	        for(let i of state.items ){
 	          let d = new Date(i.date)
 	          let dd = d.getFullYear()+"/"+(d.getMonth()+1)
-	          if(items.indexOf(dd) == -1) items.push(dd)
+	          
+	          if(Object.keys(ret).indexOf(dd) == -1){
+	          	ret[dd] = 1
+	          } else {
+	          	ret[dd]++
+	          }
 	        }
-	    	return items.sort().reverse()
+	        return Object.keys( ret ).sort().reduce(function( result, key ){
+	        	result[key] = ret[key]
+	        	return result
+	        },{})
 		}
 	},
 	actions:{
