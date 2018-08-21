@@ -1,4 +1,4 @@
-<?
+<?php
 /* GET directory, file
  */
 require(__DIR__."/config.php");
@@ -18,3 +18,5 @@ try{
 } catch( Exception $e ){
 	echo '{"error":"Directory is opened - '.$e.getMEssage().'"}';
 }
+
+?>

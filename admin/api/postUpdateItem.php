@@ -1,5 +1,5 @@
-<?
-/* GET collection, id 
+<?php
+/* GET collection, id
  * POST {{json_data}}
  */
 require(__DIR__."/config.php");
@@ -26,3 +26,5 @@ forEach($data AS $i=>$row){
 file_put_contents($file, json_encode($data, JSON_ENCODE_PARAMS));
 
 echo '{"ok":1}';
+
+?>

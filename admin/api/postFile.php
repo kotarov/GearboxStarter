@@ -1,9 +1,9 @@
-<?
+<?php
 /* GET name
  * FILES content
- * 
- * $_FILES => [ 
- *     { path: { name:"", type:"", tmp_name:"", error:0, size:000 } } 
+ *
+ * $_FILES => [
+ *     { path: { name:"", type:"", tmp_name:"", error:0, size:000 } }
  * ]
  */
 
@@ -22,7 +22,7 @@ forEach( array_keys($_FILES) AS $key ){
 
     if( !file_exists($path) ) @mkdir($path, 007, true);
     if(  file_exists($file) ) unlink($file);
-    
+
     move_uploaded_file( $_FILES[$key]["tmp_name"], $file );
 }
 
@@ -70,3 +70,5 @@ Array
         )
 )
 */
+
+?>

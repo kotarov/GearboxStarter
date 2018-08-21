@@ -1,4 +1,4 @@
-<?
+<?php
 
 include __DIR__."/config.php";
 
@@ -15,6 +15,8 @@ $dest = __DIR__."/../../store/".$to;
 
 if(file_exists($src)) {
 	rename($src,$dest);
-} 
+}
 
 echo '{"ok":1}';
+
+?>

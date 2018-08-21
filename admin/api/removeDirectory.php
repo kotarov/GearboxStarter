@@ -1,4 +1,4 @@
-<?
+<?php
 /* GET directory
  */
 require(__DIR__."/config.php");
@@ -13,3 +13,5 @@ array_map(function($d){@unlink($d);}, glob("$dir/*.*"));
 @rmdir($dir);
 
 echo '{"ok":1,"directory":"'.$directory.'"}';
+
+?>
