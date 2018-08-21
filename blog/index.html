@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <base href="/GearboxStarter/blog/">
+    <!--<base href="/GearboxStarter/blog/"> -->
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +22,7 @@
 
   <body>
     <div id="blogApp">
-    
+
       <header class="blog-header py-3">
         <div class="container">
         <div class="row flex-nowrap justify-content-between align-items-center">
@@ -56,12 +57,12 @@
         </nav>
       </div>
       </div>
-    
-    
+
+
     <router-view>
       <h2 class="h2 text-center" style="color:#aaa;font-weight:300;font-size:1.5em;"><br><br>Loading...<br><br><br><br></h2>
     </router-view>
-    
+
 
     <footer class="blog-footer">
       <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
@@ -72,13 +73,13 @@
 
   </div> <!-- /#blogApp -->
 
-    <!-- 
+    <!--
     ================================================== -->
     <!-- Core -->
     <script src="https://cdn.jsdelivr.net/combine/npm/vue@2.5.16,npm/http-vue-loader@1.3.4,npm/vue-router@3.0.1/dist/vue-router.min.js,npm/vuex@3.0.1/dist/vuex.min.js,npm/vue-i18n@7.6.0/dist/vue-i18n.min.js,npm/babel-polyfill@latest/dist/polyfill.min.js,npm/jquery@3.3.1/dist/jquery.slim.min.js,npm/popper.js@latest/dist/umd/popper.min.js,npm/bootstrap@4.1.1/dist/js/bootstrap.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/holderjs@2.9.4/holder.min.js"></script>
-    
+
     <script src="blogStore.js"></script>
     <script>
       /** router */
@@ -93,7 +94,7 @@
             { path: "/:date(\\d+\\-\\d+\\-\\d+)/:title", component:httpVueLoader("./modules/article")},
           ] })
         Vue.use(VueRouter)
-        
+
         /** store */
         let store = new Vuex.Store({ modules:{ blogStore }})
         store.dispatch("init")
