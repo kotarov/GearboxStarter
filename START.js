@@ -1,7 +1,7 @@
 /** STATIC SERVER    ( no dependances )
  *    by: skotarov@gmail.com
  * usage: node start.js
- **/
+ **/  
 
 var port = 8080
 /* */
@@ -19,4 +19,3 @@ require('express')().use(require('express').static("public")).listen(8080,()=>{
   console.log("\n*** Express - port: 8080, directory: public")
 })
 /**/
-
