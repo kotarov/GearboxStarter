@@ -1,33 +1,5 @@
 [
     {
-        "title": "Skeleton of mystery dinosaur ",
-        "alt": "Описание на някаквата статия <b>malko</b>",
-        "src": "DemoArticleTwo.html",
-        "id": 1526539751,
-        "isActive": 1,
-        "_rowVariant": "info",
-        "image": "cover.jpeg",
-        "_collection": "articles",
-        "categories": "history",
-        "date": "2018-06-08",
-        "descr": "Skeleton of mystery dinosaur species sells for $2.4 million at auction",
-        "author": "Oscar Holland, CNN"
-    },
-    {
-        "title": "3D-printed concrete houses is coming",
-        "alt": 222,
-        "src": "metacafe.html",
-        "id": 1526558647,
-        "isActive": 0,
-        "_rowVariant": "info",
-        "_collection": "articles",
-        "categories": "lifestyle",
-        "date": "2018-06-06",
-        "descr": "Living in a community of 3D-printed homes will soon be reality in the Dutch city of Eindhoven.",
-        "author": "Gianluca Mezzofiore, CNN",
-        "image": "cover.jpeg"
-    },
-    {
         "title": "Витоша 13 спечели след дузпи ",
         "alt": "new art",
         "src": "asdsdasdasd.html",
@@ -121,5 +93,28 @@
         "month": 2,
         "day": 5,
         "date": "2018-06-05"
+    },
+    {
+        "date": "2018-06-08",
+        "categories": "history,tutorial,наука",
+        "_collection": "articles",
+        "title": "Skeleton of mystery dinosaur",
+        "author": "Oscar Holland, CNN",
+        "descr": "Skeleton of mystery dinosaur species sells for $2.4 million at auction",
+        "id": 1535119195
+    },
+    {
+        "title": "Skeleton of mystery dinosaur",
+        "alt": "Описание на някаквата статия <b>malko</b>",
+        "src": "DemoArticleTwo.html",
+        "id": 1526539751,
+        "isActive": 1,
+        "image": "cover.jpeg",
+        "_collection": "articles",
+        "categories": "наука",
+        "date": "2018-06-08",
+        "descr": "Skeleton of mystery dinosaur species sells for $2.4 million at auction",
+        "author": "Oscar Holland, CNN",
+        "_rowVariant": "info"
     }
 ]

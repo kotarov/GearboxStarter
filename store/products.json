@@ -1,0 +1,12 @@
+[
+    {
+        "date": "2018-08-24",
+        "categories": 123321123,
+        "_collection": "products",
+        "title": "Product one",
+        "id": 1535115723,
+        "_rowVariant": "info",
+        "descr": "Десцриптион ис гоинг хере",
+        "image": "cover.jpeg"
+    }
+]

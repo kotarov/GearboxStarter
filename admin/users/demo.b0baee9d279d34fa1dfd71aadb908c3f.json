@@ -6,7 +6,9 @@
 	"menu":[
 		{ "title": "Dashboard", 	"icon":"home", 		"path":"/Dashboard",			"component":"dashboard"	},
 		{ "title": "Articles", 		"icon":"book", 		"path":"/Articles",				"component":"articles"	},
-		{ 												"path":"/Articles/Categories",  "component":"articles/categories.vue" }
+		{								 														"path":"/Articles/Categories",  "component":"articles/categories.vue" },
+		{ "title": "Produts", 		"icon":"box", 		"path":"/Products",				"component":"products"},
+		{ 																					"path":"/Products/Categories",			"component":"products/categories.vue"}
 	],
 
 	"_menu":[
@@ -16,7 +18,7 @@
 		{ "title": "Customers", 	"icon":"users", 		"path":"/Customers", 		"_component":"customers"	},
 		{ "title": "Reports", 		"icon":"bar-chart-2", 	"path":"/Reports", 			"_component":"reports"		},
 		{ "title": "Integrations", 	"icon":"layers", 		"path":"/Integrations",		"_component":"integrations"},
-		{ "title": "Articles", 		"icon":"book", 			"path":"/Articles",			"component":"articles", 
+		{ "title": "Articles", 		"icon":"book", 			"path":"/Articles",			"component":"articles",
 			"_children":[
 				{ "title":"Categories", "path":"/Articles/categories", "component":"articles/categories.vue" }
 			]

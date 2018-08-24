@@ -11,7 +11,7 @@ $data       = array();
 
 if(!$collection)        die('{"error":"no collection defined"}');
 
-if( !file_exists($dir) )  @mkdir($dir,007,true);
+if( !file_exists($dir) )  @mkdir($dir,0777,true);
 if( file_exists($file) )  $data = json_decode( file_get_contents($file), true );
 if( !$_POST['id']      )  $_POST['id'] = time();
 

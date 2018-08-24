@@ -20,7 +20,7 @@ forEach( array_keys($_FILES) AS $key ){
     $type = pathinfo($file, PATHINFO_EXTENSION);
     $size = filesize($_FILES[$key]["tmp_name"]);
 
-    if( !file_exists($path) ) @mkdir($path, 007, true);
+    if( !file_exists($path) ) @mkdir($path, 0777, true);
     if(  file_exists($file) ) unlink($file);
 
     move_uploaded_file( $_FILES[$key]["tmp_name"], $file );

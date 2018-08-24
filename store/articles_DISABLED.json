@@ -57,19 +57,6 @@
         "categories": "null"
     },
     {
-        "id": 1,
-        "title": "Article One ONE ",
-        "alt": "Article One description DESC",
-        "src": "DemoArticleOne.html",
-        "isActive": 0,
-        "image": "",
-        "_collection": "articles_DISABLED",
-        "_rowVariant": "info",
-        "descr": "the descr of one",
-        "author": "svetlio",
-        "categories": "kat1,kat2"
-    },
-    {
         "_collection": "articles_DISABLED",
         "title": "ддддддддд",
         "alt": "дддддддд",
