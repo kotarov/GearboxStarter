@@ -2,13 +2,13 @@
   <div class="card mb-4 box-shadow">
     <div class="card-img-top" :style="'background-image:url(\''+imageUrl()+'\')'" alt="Card image cap"></div>
     <div class="card-body">
-      <p class="card-text" style="min-height:100px">{{ item.descr }}</p>
-      <div class="d-flex justify-content-between align-items-center">
+      <p class="card-text">{{ item.descr }}</p>
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary">Quick view</button>
+          <button @click="addToCart()" type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
         </div>
-        <small class="text-muted">9 mins</small>
+        <small class="text-muted">9 avaible</small>
       </div>
     </div>
   </div>
@@ -19,7 +19,10 @@ module.exports = {
   props:["item"],
   methods:{
     imageUrl(){
-      return "https://static.boredpanda.com/blog/wp-content/uuuploads/creative-product-packaging-2/creative-packaging-2-note-1.jpg"
+      return this.item.image ? "../store/products/"+this.item.id+"/"+this.item.image : "../assets/img/NoImage.jpg"
+    },
+    addToCart(){
+      this.$store.dispatch("addProductToCart", {item:this.item,qty:1})
     }
   }
 }
@@ -34,6 +37,6 @@ module.exports = {
     background-size:cover;
   }
   .card-text {
-    min-height: 100px;
+    min-height: 50px;
   }
 </style>

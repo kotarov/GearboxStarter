@@ -7,6 +7,41 @@
         "id": 1535115723,
         "_rowVariant": "info",
         "descr": "Десцриптион ис гоинг хере",
+        "image": "cover.jpeg",
+        "name": "Продукт едно",
+        "price": ""
+    },
+    {
+        "date": "2018-08-25",
+        "categories": "",
+        "_collection": "products",
+        "title": "Product 2",
+        "descr": "Description of product 2",
+        "author": "Svetlio",
+        "id": 1535183238,
+        "name": "Продукт две",
+        "price": 120,
+        "_rowVariant": "info"
+    },
+    {
+        "date": "2018-08-27",
+        "categories": 123321123,
+        "_collection": "products",
+        "title": "product3",
+        "id": 1535353960,
+        "descr": "",
+        "name": "Продукт три",
+        "price": 12
+    },
+    {
+        "date": "2018-08-27",
+        "categories": "",
+        "_collection": "products",
+        "title": "product4",
+        "id": 1535353968,
+        "price": 8.2,
+        "name": "Продукт четири",
+        "_rowVariant": "info",
         "image": "cover.jpeg"
     }
 ]

@@ -75,20 +75,36 @@
 				{{ JSON.stringify(data.item.categories) }}
 			</template>
 
-			<template slot="title" slot-scope="data">
-				<b>{{ data.item.title }}</b> <br> &nbsp; <i>{{ JSON.stringify(data.item.categories) }}</i><br>
-				<span v-if="typeof data.item.descr == 'string'" v-html="data.item.descr.slice(0,130)"></span>
-				<span v-if="data.item.descr && data.item.descr.length > 130">...</span>
+			<template slot="name" slot-scope="data">
+				
+				<b>{{ data.item.name }}</b>
+				<br><small>ID: {{ data.item.id }}</small>				
 			</template>
 
+			<template slot="title" slot-scope="data">
+				{{ data.item.title }}<br> &nbsp; <i>Categories: {{ JSON.stringify(data.item.categories) }}</i><br>
+				<!--
+				<span v-if="typeof data.item.descr == 'string'" v-html="data.item.descr.slice(0,130)"></span>
+				<span v-if="data.item.descr && data.item.descr.length > 130">...</span> 
+				-->
+			</template>
+<!--
 			<template slot="content" slot-scope="data">
-				<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
-				<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">Edit</b-btn>
+				<div style="text-align:center;white-space:nowrap">
+				  <b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
+						  <b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">Edit</b-btn>
+				</div>
+			</template>
+-->
+			<template slot="price" slot-scope="data">
+				<div style="text-align:right">{{ parseFloat( data.item.price ).toFixed(2) }} </div>
 			</template>
 
 			<template slot="actions" slot-scope="data">
-				<button class="btn btn-outline-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
-				<b-btn size="xs" variant="outline-danger" @click="selectItem(data.item);deleteModal=true">Del</b-btn>
+					<div style="text-align:center; white-space:nowrap">
+						 <button class="btn btn-outline-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
+						 <b-btn size="xs" variant="outline-danger" @click="selectItem(data.item);deleteModal=true">Del</b-btn>
+					</div>
 			</template>
 
 		</b-table>
@@ -119,13 +135,13 @@
 		>
 			<b-form-group label="Collection:*" horizontal>
 				<b-form-select v-model="selectedCopy['.collection']" :options="selectedCollections"></b-form-select></b-form-group>
-			<b-form-group label="Date:*" horizontal> <b-form-input type="date" v-model="selectedCopy.date"></b-form-input> </b-form-group>
-			<b-form-group label="Title:*" horizontal>
-				<b-form-textarea v-model="selectedCopy.title" required autofocus></b-form-textarea></b-form-group>
+			<b-form-group label="Name:*" horizontal><b-form-input required autofocus></b-form-input> </b-form-group>
+			<b-form-group label="Title:*" horizontal><b-form-textarea v-model="selectedCopy.title" required></b-form-textarea></b-form-group>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
-			<b-form-group label="Author:" horizontal> <b-form-input v-model="selectedCopy.author"></b-form-input>       </b-form-group>
+			<b-form-group label="Brand:" horizontal> <b-form-input v-model="selectedCopy.brand"></b-form-input> </b-form-group>
 			<b-form-group label="Categories:" horizontal>
 				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select></b-form-group>
+			<b-form-group label="Price:" horizontal> <b-form-input type="number" step="0.01" v-model="selectedCopy.price"></b-form-input>    </b-form-group>
 		</b-modal>
 
 		<!-- Modal EDIT -->
@@ -135,25 +151,25 @@
 			@ok="editItem" ok-title="Save" cancel-title="Exit" cancel-variant="link"
 		>
 			<b-form-group label="ID:"     horizontal> <b>{{ selectedCopy.id }}</b> </b-form-group>
-			<b-form-group label="Date:*" horizontal> <b-form-input type="date" v-model="selectedCopy.date"></b-form-input> </b-form-group>
+			<b-form-group label="Name:*"  horizontal> <b-form-input type="text" v-model="selectedCopy.name"></b-form-input> </b-form-group>
 			<b-form-group label="Title:*" horizontal> <b-form-textarea v-model="selectedCopy.title"></b-form-textarea> </b-form-group>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
-			<b-form-group label="Author:" horizontal> <b-form-input v-model="selectedCopy.author"></b-form-input>       </b-form-group>
+			<b-form-group label="Brand:" horizontal> <b-form-input v-model="selectedCopy.brand"></b-form-input>    </b-form-group>
 			<b-form-group label="Categories:" horizontal>
-				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select>
-			</b-form-group>
+				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select></b-form-group>
+			<b-form-group label="Price:" horizontal> <b-form-input type="number" step="0.01" v-model="selectedCopy.price"></b-form-input>    </b-form-group>
 		</b-modal>
 
 
 		<!-- Modal VIEW -->
-
+<!--
 		<b-modal v-model="viewModal" size="lg" @show="fetchFileContent" no-fade
 			:title="selectedCopy.title"
 			ok-only @ok="selectedCopy = {}" ok-title="Exit" ok-variant="link"
 		>
 			<div v-html="htmlFileContent"></div>
 		</b-modal>
-
+-->
 
 		<!-- Modal DELETE -->
 
@@ -191,7 +207,7 @@
 
 
 		<!-- Modal FILE -->
-
+<!--
 		<b-modal v-model="fileModal" size="screen" no-fade @show="fetchFileContent"  :no-fade="noFade"
 			:title="selectedCopy.title + ' ['+htmlFileContent.length+' b]'"
 			@ok="changeFileContent" ok-title="Save" cancel-variant="link"
@@ -199,7 +215,7 @@
 			<summernote v-model="htmlFileContent" autofocus placeholder="Write aArticle content..."></summernote>
 		</b-modal>
 
-
+-->
 		<!-- Modal COLLECTION -->
 
 		<b-modal v-model="collectionModal"  :no-fade="noFade"
@@ -235,12 +251,13 @@ module.exports = {
 		  //{ key:'isActive',sortable:true },
 		  { key: '.collection', sortable:true },
 		  { key:'image'},
-		  { key:'id', sortable:true },
-		  { key: 'date', sortable:true },
+		  //{ key:'id', sortable:true },
+		  { key: 'name', label:"Name/Id", sortable:true },
 		  //{ key:"categories"},
-		  { key:'title', label:"Title/Category/Descr", sortable:true, tdClass:"w-50" },
+		  { key:'title', label:"Title/Category", sortable:true, tdClass:"w-50" },
+		  { key:'price', sortable:true},
 		  { key:'actions', class:"text-right" },
-		  { key:'content', label:"HTML", class:"text-right" },
+		  //{ key:'content', label:"HTML", class:"text-right" },
 
 		],
 		required:[".collection","date","title"],

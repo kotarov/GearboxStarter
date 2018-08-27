@@ -63,23 +63,26 @@ const productsStore = {
 	actions:{
 		init({state, dispatch, commit}){
 			dispatch("fetchProducts")
-			//dispatch("fetchCategories")
+			//dispatch("fetchProductCategories")
 		},
 		fetchProducts({state, dispatch, commit}){
 			let url = "../store/products.json"
 			fetch(url).then(ret=>ret.json())
 			.then(ret=>{ state.items = ret })
 		},
-		fetchCategories({state,dispatch,commit}){
+		/*
+		fetchProductCategories({state,dispatch,commit}){
 			let url = "../store/articlesCategories.json"
 			fetch(url).then(ret=>ret.json())
 			.then(ret=>{state.categories=ret})
 		},
+		*/
+		/*
 		fetchContent({state,dispatch,commit},article){
 			let url = "../store/articles/"+article.id+"/content.html"
 			return fetch(url).then(ret=>{
 				console.log
 			})
-		}
+		}*/
 	}
 }

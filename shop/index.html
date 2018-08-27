@@ -19,58 +19,85 @@
   <body><div id="shopApp">
 
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the Shop below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
+        <div class="container d-flex justify-content-between" style="">
           <a href="#" class="navbar-brand d-flex align-items-center">
-          <!--
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-          -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 19.25 19.25" style="enable-background:new 0 0 19.25 19.25;" xml:space="preserve" width="512px" height="512px">
-              <g><g id="Layer_1_107_"><g><path d="M19.006,2.97c-0.191-0.219-0.466-0.345-0.756-0.345H4.431L4.236,1.461     C4.156,0.979,3.739,0.625,3.25,0.625H1c-0.553,0-1,0.447-1,1s0.447,1,1,1h1.403l1.86,11.164c0.008,0.045,0.031,0.082,0.045,0.124     c0.016,0.053,0.029,0.103,0.054,0.151c0.032,0.066,0.075,0.122,0.12,0.179c0.031,0.039,0.059,0.078,0.095,0.112     c0.058,0.054,0.125,0.092,0.193,0.13c0.038,0.021,0.071,0.049,0.112,0.065c0.116,0.047,0.238,0.075,0.367,0.075     c0.001,0,11.001,0,11.001,0c0.553,0,1-0.447,1-1s-0.447-1-1-1H6.097l-0.166-1H17.25c0.498,0,0.92-0.366,0.99-0.858l1-7     C19.281,3.479,19.195,3.188,19.006,2.97z M17.097,4.625l-0.285,2H13.25v-2H17.097z M12.25,4.625v2h-3v-2H12.25z M12.25,7.625v2     h-3v-2H12.25z M8.25,4.625v2h-3c-0.053,0-0.101,0.015-0.148,0.03l-0.338-2.03H8.25z M5.264,7.625H8.25v2H5.597L5.264,7.625z      M13.25,9.625v-2h3.418l-0.285,2H13.25z" fill="#FFFFFF"/>
-          			<circle cx="6.75" cy="17.125" r="1.5" fill="#FFFFFF"/>
-          			<circle cx="15.75" cy="17.125" r="1.5" fill="#FFFFFF"/>
-              </g></g></g>
-            </svg> &nbsp;&nbsp;
-            <strong>Shop</strong>
+            <span>Your Shop Name</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>0988 66 55 44</strong>
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+
+          <span class="" _style="position:relative">
+            <button id="cart-toggle" class="navbar-toggler text-nowrap" type="button" data-toggle="collapse"
+                style="position:fixed; right:40px; top:0; z-index:2"
+                data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 19.25 19.25" style="enable-background:new 0 0 19.25 19.25;" xml:space="preserve" width="512px" height="512px">
+                  <g><g id="Layer_1_107_"><g><path d="M19.006,2.97c-0.191-0.219-0.466-0.345-0.756-0.345H4.431L4.236,1.461     C4.156,0.979,3.739,0.625,3.25,0.625H1c-0.553,0-1,0.447-1,1s0.447,1,1,1h1.403l1.86,11.164c0.008,0.045,0.031,0.082,0.045,0.124     c0.016,0.053,0.029,0.103,0.054,0.151c0.032,0.066,0.075,0.122,0.12,0.179c0.031,0.039,0.059,0.078,0.095,0.112     c0.058,0.054,0.125,0.092,0.193,0.13c0.038,0.021,0.071,0.049,0.112,0.065c0.116,0.047,0.238,0.075,0.367,0.075     c0.001,0,11.001,0,11.001,0c0.553,0,1-0.447,1-1s-0.447-1-1-1H6.097l-0.166-1H17.25c0.498,0,0.92-0.366,0.99-0.858l1-7     C19.281,3.479,19.195,3.188,19.006,2.97z M17.097,4.625l-0.285,2H13.25v-2H17.097z M12.25,4.625v2h-3v-2H12.25z M12.25,7.625v2     h-3v-2H12.25z M8.25,4.625v2h-3c-0.053,0-0.101,0.015-0.148,0.03l-0.338-2.03H8.25z M5.264,7.625H8.25v2H5.597L5.264,7.625z      M13.25,9.625v-2h3.418l-0.285,2H13.25z" fill="#FFFFFF"/>
+                    <circle cx="6.75" cy="17.125" r="1.5" fill="#FFFFFF"/>
+                    <circle cx="15.75" cy="17.125" r="1.5" fill="#FFFFFF"/>
+                  </g></g></g>
+                </svg>
+                <span :style="{display:$store.getters.cartCount > 0 ? 'inline-block':'none'}"
+                    class="badge badge-danger" style="display:none;position:absolute;margin-top:-5px;margin-left:-5px">
+                  {{ $store.getters.cartCount }}</span>
+            </button>
+          </span>
+
         </div>
       </div>
+
+      <div class="collapse bg-dark" id="navbarHeader">
+        <br>
+        <div class="container">
+          <shopping-cart></shopping-cart>
+          <!-- -->
+          <div class="my-0 col-md-3 col-lg-4">
+              <button class="btn btn-primary btn-block float-left btn-lg">Checkout</button>
+          </div>
+          <div class="row"><br>&nbsp;<br>&nbsp;</div>
+        <!---->
+        </div>
+        <br>
+      </div>
+
     </header>
 
     <router-view>
       <h2 class="h2 text-center" style="color:#aaa;font-weight:300;font-size:1.5em;"><br><br>Loading...<br><br><br><br></h2>
     </router-view>
 
-    <footer class="text-muted">
+
+
+    <div class="text-muted py-5">
+      <div class="container">
+        <p>Shop example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        <p>New to Gearbox Starter ? <a href="../">Visit the homepage</a> or ask any question <a href="mail:skotarov@gmail.com">skotarov@gmail.com</a>.</p>
+      </div>
+    </div>
+
+
+    <footer class="bg-dark">
       <div class="container">
         <p class="float-right">
-          <a href="#">Back to top</a>
+          <a href="#" class="text-white">Back to top</a>
         </p>
-        <p>Shop example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+        <div class="row">
+          <div class="col-sm-8 col-md-7 _py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Add some information about the Shop below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 _py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email me</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </footer>
+
   </div><!-- //#shpApp -->
     <!--
     ================================================== -->
@@ -79,13 +106,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/holderjs@2.9.4/holder.min.js"></script>
 
-    <script src="productsStore.js"></script>
+    <script src="modules/productsStore.js"></script>
+    <script src="modules/productsCartStore.js"></script>
     <script>
       /** router */
         let router = new VueRouter({ linkActiveClass:"font-weight-bold", routes:  [
             //{ path: "/",          redirect:"/Home"},
-            { path: "*",          component: httpVueLoader("./modules/undefined")},
-            { path: "(/Home)?",      component: httpVueLoader("./modules/home") },
+            { path: "*",          component: httpVueLoader("./components/undefined")},
+            { path: "(/Home)?",      component: httpVueLoader("./components/home") },
 
             //{ path: "/Category/:category", component: httpVueLoader("./modules/category") },
             //{ path: "/Search/:term?", component: httpVueLoader("./modules/search")},
@@ -95,7 +123,7 @@
         Vue.use(VueRouter)
 
         /** store */
-        let store = new Vuex.Store({ modules:{ productsStore }})
+        let store = new Vuex.Store({ modules:{ productsStore, productsCartStore }})
         store.dispatch("init")
 
         /** i18n */
@@ -112,8 +140,6 @@
             i18n,
             store,
             updated(){
-              //alert("updated")
-
               Holder.addTheme('thumb', {
                 bg: '#55595c',
                 fg: '#eceeef',
@@ -121,8 +147,8 @@
               });
             },
             components:{
-              //mainMenuItem: {template:`<router-link :to="'/category/'+item.id" class="p-2 text-muted">{{ item.title }}</router-link>`,
-//                              props:["item"]}
+              shoppingCart:httpVueLoader("./components/shoppingCart.vue"),
+              orderForm: httpVueLoader("./components/orderForm.vue")
             }
         })
     </script>

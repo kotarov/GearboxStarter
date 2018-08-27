@@ -37,3 +37,33 @@ footer p {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+
+/* Custom */
+/*
+#cart-toggle {
+  position:fixed;
+  z-index:2;
+  right:42px;
+  background: #343a40!important;
+  border:none;
+  width:70px;
+  height:50px;
+} */
+
+#cart-toggle {
+  background: #343a40!important;
+  border:none;
+  width:70px;
+  height:50px;
+  margin-top:5px;
+}
+
+
+#navbarHeader {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1;
+}
