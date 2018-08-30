@@ -76,16 +76,16 @@
 			</template>
 
 			<template slot="name" slot-scope="data">
-				
+
 				<b>{{ data.item.name }}</b>
-				<br><small>ID: {{ data.item.id }}</small>				
+				<br><small>ID: {{ data.item.id }}</small>
 			</template>
 
 			<template slot="title" slot-scope="data">
 				{{ data.item.title }}<br> &nbsp; <i>Categories: {{ JSON.stringify(data.item.categories) }}</i><br>
 				<!--
 				<span v-if="typeof data.item.descr == 'string'" v-html="data.item.descr.slice(0,130)"></span>
-				<span v-if="data.item.descr && data.item.descr.length > 130">...</span> 
+				<span v-if="data.item.descr && data.item.descr.length > 130">...</span>
 				-->
 			</template>
 <!--
@@ -126,7 +126,7 @@
 		</b-row>
 
 
-		<!-- ------- DILAOGS --------- -->
+		<!-- ------ DILAOGS ------ -->
 
 		<!-- Modal NEW -->
 
@@ -135,13 +135,22 @@
 		>
 			<b-form-group label="Collection:*" horizontal>
 				<b-form-select v-model="selectedCopy['.collection']" :options="selectedCollections"></b-form-select></b-form-group>
-			<b-form-group label="Name:*" horizontal><b-form-input required autofocus></b-form-input> </b-form-group>
+			<br>
+			<b-form-group label="Name:*" horizontal><b-form-input v-model="selectedCopy.name" required autofocus></b-form-input> </b-form-group>
+			<b-form-group label="Name_BG:" horizontal><b-form-input v-model="selectedCopy.name_bg"></b-form-input> </b-form-group>
+			<br>
 			<b-form-group label="Title:*" horizontal><b-form-textarea v-model="selectedCopy.title" required></b-form-textarea></b-form-group>
+			<b-form-group label="Title_BG:" horizontal><b-form-textarea v-model="selectedCopy.title_bg"></b-form-textarea></b-form-group>
+			<br>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
+			<b-form-group label="Descr_BG:"  horizontal> <b-form-textarea v-model="selectedCopy.descr_bg" ></b-form-textarea> </b-form-group>
+			<br>
 			<b-form-group label="Brand:" horizontal> <b-form-input v-model="selectedCopy.brand"></b-form-input> </b-form-group>
 			<b-form-group label="Categories:" horizontal>
 				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select></b-form-group>
+			<br>
 			<b-form-group label="Price:" horizontal> <b-form-input type="number" step="0.01" v-model="selectedCopy.price"></b-form-input>    </b-form-group>
+			<b-form-group label="Qty:" horizontal> <b-form-input type="number" step="1" v-model="selectedCopy.qty"></b-form-input>    </b-form-group>
 		</b-modal>
 
 		<!-- Modal EDIT -->
@@ -152,12 +161,20 @@
 		>
 			<b-form-group label="ID:"     horizontal> <b>{{ selectedCopy.id }}</b> </b-form-group>
 			<b-form-group label="Name:*"  horizontal> <b-form-input type="text" v-model="selectedCopy.name"></b-form-input> </b-form-group>
+			<b-form-group label="Name_BG:" horizontal> <b-form-input type="text" v-model="selectedCopy.name_bg"></b-form-input> </b-form-group>
+			<br>
 			<b-form-group label="Title:*" horizontal> <b-form-textarea v-model="selectedCopy.title"></b-form-textarea> </b-form-group>
+			<b-form-group label="Title_BG:" horizontal> <b-form-textarea v-model="selectedCopy.title_bg"></b-form-textarea> </b-form-group>
+			<br>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
+			<b-form-group label="Descr_BG:"  horizontal> <b-form-textarea v-model="selectedCopy.descr_bg" ></b-form-textarea> </b-form-group>
+			<br>
 			<b-form-group label="Brand:" horizontal> <b-form-input v-model="selectedCopy.brand"></b-form-input>    </b-form-group>
 			<b-form-group label="Categories:" horizontal>
 				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select></b-form-group>
+			<br>
 			<b-form-group label="Price:" horizontal> <b-form-input type="number" step="0.01" v-model="selectedCopy.price"></b-form-input>    </b-form-group>
+			<b-form-group label="Qty:" horizontal> <b-form-input type="number" step="1" v-model="selectedCopy.qty"></b-form-input>    </b-form-group>
 		</b-modal>
 
 
@@ -255,6 +272,7 @@ module.exports = {
 		  { key: 'name', label:"Name/Id", sortable:true },
 		  //{ key:"categories"},
 		  { key:'title', label:"Title/Category", sortable:true, tdClass:"w-50" },
+			{ key:'qty', sortable:true },
 		  { key:'price', sortable:true},
 		  { key:'actions', class:"text-right" },
 		  //{ key:'content', label:"HTML", class:"text-right" },

@@ -1,8 +1,11 @@
 <template>
   <div class="card mb-4 box-shadow">
-    <div class="card-img-top" :style="'background-image:url(\''+imageUrl()+'\')'" alt="Card image cap"></div>
+    <router-link :to="'/Product/'+item.id+'---'+item.name.replace(/\ /g,'-')">
+      <div class="card-img-top" :style="'background-image:url(\''+imageUrl()+'\')'" alt="Card image cap"></div>
+    </router-link>
     <div class="card-body">
-      <p class="card-text">{{ item.descr }}</p>
+      <p><strong>{{ $store.getters.translateField("name",item) }}</strong></p>
+      <div class="card-text">{{ $store.getters.translateField("title",item) }}</div>
       <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="btn-group">
           <!--<button type="button" class="btn btn-sm btn-outline-secondary">Quick view</button>-->

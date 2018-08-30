@@ -1,4 +1,55 @@
 <template><div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+      <div class="invalid-feedback">
+        Valid first name is required.
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+      <div class="invalid-feedback">
+        Valid last name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5 mb-3">
+      <label for="phone">Phone</label>
+      <input type="phone" class="form-control" id="phone" placeholder="">
+      <div class="invalid-feedback">
+        Please enter a valid phone number for shipping updates.
+      </div>
+    </div>
+    <div class="col-md-7 mb-3">
+      <label for="email">Email <span class="text-muted">(Optional)</span></label>
+      <input type="email" class="form-control" id="email" placeholder="you@example.com">
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-8 mb-3">
+        <label for="address">Company</label>
+        <input type="text" class="form-control" id="company" required>
+        <div class="invalid-feedback">
+          Please enter your company name.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="address">EIN</label>
+        <input type="text" class="form-control" id="ein" required>
+        <div class="invalid-feedback">
+          Please enter your EIN.
+        </div>
+      </div>
+  </div>
+
   <div class="mb-3">
     <label for="address">Address</label>
     <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
@@ -7,11 +58,11 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <!-- <div class="mb-3">
     <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
     <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-  </div>
-  
+  </div> -->
+
   <div class="row">
     <div class="col-md-5 mb-3">
       <label for="country">Country</label>

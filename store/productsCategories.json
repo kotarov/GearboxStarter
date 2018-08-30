@@ -3,6 +3,17 @@
         "id": 123321123,
         "title": "Product Category One",
         "image": "",
-        "descr": "Opisanie"
+        "descr": "Opisanie",
+        "_collection": "productsCategories",
+        "title_bg": "Продуктова категория ЕДНО"
+    },
+    {
+        "_collection": "productsCategories",
+        "id": "bulgarian",
+        "title": "Bulgarian items",
+        "title_bg": "Български елементи",
+        "_rowVariant": "info",
+        "descr": "This is the bulgarian articles description",
+        "descr_bg": "Описанието на българските артикули"
     }
 ]

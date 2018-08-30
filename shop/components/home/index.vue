@@ -75,7 +75,7 @@ module.exports = {
     items: []
   }},
   created(){
-    this.items = this.$store.getters.homeItems
+    this.items = this.$store.getters.products //homeProducts
   },
   components:{
   },

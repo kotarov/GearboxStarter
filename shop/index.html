@@ -20,23 +20,27 @@
 
     <header>
       <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between" style="">
+        <div class="container d-flex justify-content-start" style="">
           <router-link to="/" class="navbar-brand d-flex align-items-center">
             <!-- <span v-if="i18n.locale=='bg'">[ Името на магазина ]</span> -->
             <span _v-else>Your Shop Name</span>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </router-link>
+          <span class="text-white h5 m-0">
             <strong v-if="i18n.locale=='bg'">0988 66 55 44</strong>
             <strong v-else>+359 988 66 55 44</strong>
-            <select class="btn-link btn-sm text-white" style="margin-left:2.5rem" onchange="setLocale($(this).val())">
+          </span>
+          <span>
+            <select class="btn-link btn-sm text-white" style="margin-left:2.5rem" @change.prevent.stop="setLocale(event.target.value);return false">
               <option value="en" style="color:#333">EN</option>
               <option value="bg" style="color:#333" :selected="i18n.locale=='bg'">BG</option>
             </select>
-            <select class="btn-link btn-sm text-white" style="margin-left:0.5rem" @change="$store.dispatch('setCurrency',event.target.value)">
+            <select class="btn-link btn-sm text-white" style="margin-left:0.5rem" @change.stop.prevent="$store.dispatch('setCurrency',event.target.value)">
               <option value="lv" style="color:#333">Лв</option>
               <option value="eur" style="color:#333" :selected="$store.getters.currency=='eur'">EUR</option>
               <option value="usd" style="color:#333" :selected="$store.getters.currency=='usd'">USD</option>
             </select>
-          </router-link>
+          </span>
 
           <span class="">
             <button id="cart-toggle" class="navbar-toggler text-nowrap" type="button" data-toggle="collapse"
@@ -101,7 +105,7 @@
           </select>
           &nbsp;&nbsp;&nbsp;
           <br>
-          <select class="btn my-1 btn-outline-light" style="width:70px" @change="$store.dispatch('setCurrency',event.target.value)">
+          <select class="btn my-1 btn-outline-light" style="width:70px" @change.prevent="$store.dispatch('setCurrency',event.target.value)">
             <option value="lv">Лв</option>
             <option value="eur" :selected="$store.getters.currency=='eur'">EUR</option>
             <option value="usd" :selected="$store.getters.currency=='usd'">USD</option>
@@ -135,14 +139,16 @@
     <script src="modules/productsStore.js"></script>
     <script src="modules/productsCartStore.js"></script>
     <script src="modules/currencyStore.js"></script>
+    <script src="modules/translatorStore.js"></script>
+    <script src="i18n.js"></script>
     <script>
       /** router */
         let router = new VueRouter({ linkActiveClass:"font-weight-bold", routes:  [
-            //{ path: "/",          redirect:"/Home"},
-            { path: "*",            component: httpVueLoader("./components/undefined")},
-            { path: "(/Home)?",     component: httpVueLoader("./components/home") },
-            { path: "/Checkout",     component: httpVueLoader("./components/checkout")},
-            { path: "/Product/:id", component: httpVueLoader("./components/product")}
+            //{ path: "/",            redirect:"/Home"},
+            { path: "*",              component: httpVueLoader("./components/undefined")},
+            { path: "(/Home)?",       component: httpVueLoader("./components/home") },
+            { path: "/Checkout",      component: httpVueLoader("./components/checkout")},
+            { path: "/Product/:id---:name", component: httpVueLoader("./components/product")}
 
             //{ path: "/Category/:category", component: httpVueLoader("./modules/category") },
             //{ path: "/Search/:term?", component: httpVueLoader("./modules/search")},
@@ -156,56 +162,22 @@
         Vue.use(VueRouter)
 
         /** store */
-        let store = new Vuex.Store({ modules:{ productsStore, productsCartStore, currencyStore }})
+        let store = new Vuex.Store({ modules:{ productsStore, productsCartStore, currencyStore, translatorStore }})
         store.dispatch("init")
 
         /** i18n */
         Vue.use(VueI18n);
         let i18n = new VueI18n({
           locale: localStorage.getItem("lang") || navigator.language || navigator.userLanguage,
-          messages:{
-              bg:{
-                  "Your Shop Name": "Името на магазина",
-                  "Your cart": "Вашата количка",
-                  "Shop example":"Примерен магазин",
-                  "Close":"Затвори",
-                  "Checkout":"Поръчай",
-                  'Summary':"Сума",
-                  "Tel.":"Тел.",
-                  "Del":"Изт",
-                  "About":"За нас",
-                  "Contacts":"Контакти",
-                  "Back to top":"Нагоре",
-                  "Add to cart":"Добави в количката",
-                  "Add some information about the Shop below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.":"Добавете информация за магазина по-долу, автора или друг контекст. Направете го с няколко изречения, така че хората да могат да извлекат някои информативни неща. След това ги свържете към някои сайтове за социални контакти или информация за връзка."
-              }
+          messages: translations,
+          ttt: function(s){
+            alert(s)
           }
         })
         function setLocale(l){ i18n.locale = l; localStorage.setItem("lang",l) }
 
-        /** Currencies */
-        let currency = "usd"
-        function setCurrency(c){ currency=c }
-        function formatCurrency(n){
-          /*const currencies = {
-            eur:{ sign:"€", isPrefix:true, rate:1.5 }
-          }*/
-          const rates = {eur:1.99,usd:1.45}
-          //const currency = "lv"
-
-          n = parseFloat(n)
-
-          switch(currency){
-            case "eur": n = "€ "+(n*rates[currency]).toFixed(2); break;
-            case "usd": n = "$ "+(n*rates[currency]).toFixed(2); break;
-            default: n = n.toFixed(2)+" лв"
-          }
-          return n
-        }
-
-
         Vue.component("thumb-item", httpVueLoader("./components/thumbItem.vue"))
-        //Vue.component("followNav", httpVueLoader("./components/follow.vue"))
+
 
       /** app */
         new Vue({
@@ -223,15 +195,7 @@
             components:{
               shoppingCart:httpVueLoader("./components/shoppingCart.vue"),
               orderForm: httpVueLoader("./components/orderForm.vue")
-            },
-            /*i18n:{messages:{
-                bg: {
-                  message: {
-                    'Your Shop Name':'Името на магазина',
-                    'Your cart':"Вашата количка"
-                  }
-                }
-            }}*/
+            }
         })
     </script>
   </body>

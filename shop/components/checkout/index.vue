@@ -1,6 +1,6 @@
 <template>
-<div class="">
-  <div class="container p-5 bg-light">
+<div class="bg-light">
+  <div class="container p-5">
     <div class="py-3 text-center">
       <h2>{{ $t('Checkout form') }}</h2>
 <!--
@@ -18,10 +18,10 @@
         <ul class="list-group mb-3">
           <li v-for="item of items" class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <h6 class="my-0">{{ item.name }} <span class="text-muted px-2">x</span> {{ item.cartQty }}</h6>
-              <small class="text-muted">{{ item.title }}</small>
+              <h6 class="my-0">{{ $store.getters.translateField("name",item) }} <span class="text-muted px-2">x</span> {{ item.cartQty }}</h6>
+              <small class="text-muted">{{ $store.getters.translateField("title",item) }}</small>
             </div>
-            <span class="text-muted">{{ (item.cartQty*item.price).toFixed(2) }}</span>
+            <span class="text-muted">{{ $store.getters.formatCurrency(item.cartQty*item.price) }}</span>
           </li>
 
 <!--
@@ -34,8 +34,8 @@
           </li>
 -->
           <li class="list-group-item d-flex justify-content-between bg-light">
-            <strong>Total </strong>
-            <span class="h3">{{ this.$store.getters.productsCartTotal.toFixed(2) }}</span>
+            <strong>{{ $t('Total') }} </strong>
+            <span class="h3">{{ $store.getters.formatCurrency($store.getters.productsCartTotal) }}</span>
           </li>
         </ul>
         <!--
@@ -52,7 +52,7 @@
       <div class="col-md-8 order-md-1">
 
         <form class="needs-validation" novalidate>
-
+<!--
           <h4 class="mb-3">Personal data</h4>
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -70,6 +70,7 @@
               </div>
             </div>
           </div>
+-->
 <!--
           <div class="mb-3">
             <label for="username">Username</label>
@@ -84,6 +85,7 @@
             </div>
           </div>
 -->
+<!--
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="phone">Phone</label>
@@ -101,6 +103,7 @@
               Please enter a valid email address for shipping updates.
             </div>
           </div>
+  -->
 
 <!--
           <div class="row">
@@ -119,11 +122,11 @@
               </div>
             </div>
           </div>
--->
+
 
           <br>
           <hr class="mb-4">
-
+-->
           <h4 class="mb-3">Shipping address</h4>
           <address-form></address-form>
 
@@ -248,7 +251,7 @@ module.exports = {
     messages:{
       'bg':{
         'Checkout form':"Форма за поръчване",
-        
+
 
         'Save this information for next time':"Запиши данните за следващия път",
         'Continue to checkout':"Приклчи поръчката"

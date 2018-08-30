@@ -5,6 +5,7 @@ const currencyStore = {
   },
   getters:{
     currency(state){ return state.currency },
+    price(state,getters){return function(val){ return getters.formatCurrency(val)} },
     formatCurrency(state){return function(val){
       val = parseFloat(val)
       switch(state.currency){
@@ -17,7 +18,7 @@ const currencyStore = {
   },
   actions:{
     init({state,dispatch,commit}){
-      state.currency = localStorage.getItem("currency") || 'lv'
+      state.currency = localStorage.getItem("currency") || (navigator.language || navigator.userLanguage == 'bg' ? 'lv':'eur')
       fetch("../store/currencyRates.json").then(ret=>ret.json())
       .then(ret=>{
         state.rates = ret

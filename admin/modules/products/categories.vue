@@ -95,8 +95,12 @@
 		>
 			<b-form-group label="Collection:*" horizontal><b-form-select v-model="selectedCopy['.collection']" :options="selectedCollections"></b-form-select></b-form-group>
 			<b-form-group label="Id:*" horizontal><b-form-input v-model="selectedCopy.id" required></b-form-input> </b-form-group>
+			<br>
 			<b-form-group label="Title:*" horizontal> <b-form-textarea v-model="selectedCopy.title" required autofocus></b-form-textarea></b-form-group>
+			<b-form-group label="Title_BG:" horizontal> <b-form-textarea v-model="selectedCopy.title_bg" required autofocus></b-form-textarea></b-form-group>
+			<br>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
+			<b-form-group label="Descr_BG:"  horizontal> <b-form-textarea v-model="selectedCopy.descr_bg" ></b-form-textarea> </b-form-group>
 		</b-modal>
 
 		<!-- Modal EDIT -->
@@ -106,8 +110,12 @@
 			@ok="editItem" ok-title="Save" cancel-title="Exit" cancel-variant="link"
 		>
 			<b-form-group label="<span class='text-danger'>Id:*</span>" horizontal><b-form-input v-model="selectedCopy.id" required></b-form-input> </b-form-group>
+			<br>
 			<b-form-group label="Title:*" horizontal> <b-form-textarea v-model="selectedCopy.title"></b-form-textarea> </b-form-group>
+			<b-form-group label="Title_BG:" horizontal> <b-form-textarea v-model="selectedCopy.title_bg"></b-form-textarea> </b-form-group>
+			<br>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
+			<b-form-group label="Descr_BG:"  horizontal> <b-form-textarea v-model="selectedCopy.descr_bg" ></b-form-textarea> </b-form-group>
 		</b-modal>
 
 

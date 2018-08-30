@@ -4,11 +4,14 @@ const productsStore = {
 		categories:[]
 	},
 	getters:{
-		items(state)				{ return state.items },
-		homeItems(state)			{ return state.items.sort((a,b)=>{
+		products(state)				{ return state.items },
+		product(state) {
+			return function(id){return state.items.find((e)=>e.id==id)}
+		},
+		homeProducts(state)			{ return state.items.sort((a,b)=>{
 			return Date.parse(b.date) - Date.parse(a.date)
 		} ).slice(0,6) },
-		mainMenuCategories(state)	{return state.categories.filter( value => true ) },
+		//mainMenuCategories(state)	{return state.categories.filter( value => true ) },
 
 		categoryFromId(state){
 			return function(idCategory){

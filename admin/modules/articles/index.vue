@@ -1,11 +1,11 @@
 <template>
 	<div class="pt-3 pb-2 mb-3 border-bottom">
-		
+
 		<!-- Header -->
 
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 _border-bottom">
 			<h2 class="h2">{{ title }}</h2>
-		
+
 			<div class="btn-toolbar ml-2 mb-md-0">
 				<b-input-group size="sm" class="ml-2 m-y-2" prepend='<i data-feather="search"></i>'>
 					<b-form-input v-model="filter" size="sm" class="" placeholder="Filter..."></b-form-input>
@@ -18,16 +18,16 @@
 				</b-btn-group>
 			</div>
 		</div>
-		
-		<span class="float-right"> 
-			Found: <b> {{ filteredItems.length }}</b> of {{ items.length }} 
+
+		<span class="float-right">
+			Found: <b> {{ filteredItems.length }}</b> of {{ items.length }}
 		</span>
 
-		<b-form-checkbox-group 
-			v-model="selectedCollections" 
-			:options="collections" 
+		<b-form-checkbox-group
+			v-model="selectedCollections"
+			:options="collections"
 			@input="fetchCollections"
-		></b-form-checkbox-group>	
+		></b-form-checkbox-group>
 
 
 		<!-- Table -->
@@ -36,7 +36,7 @@
 		:busy.sync="isBusy"
 		:current-page="currentPage"
 		:per-page="perPage"
-		:fields="fields" 
+		:fields="fields"
 		:items="items"
 		stacked="md"
 		:filter="filter"
@@ -50,7 +50,7 @@
 				<a v-else  @click.prevent="editField(data.item,'isActive',1)" href="#" class="text-danger">No</a>
 			</template> -->
 
-			
+
 			<template slot=".collection" slot-scope="data">
 				<a href="#" @click.prevent="selectItem(data.item);collectionModal=true">
 					[ {{ data.item['.collection'].split('_').pop() }} ]</a>
@@ -58,7 +58,7 @@
 
 			<template slot="image" slot-scope="data">
 				<a href="#" @click.prevent="selectItem(data.item);imageModal=true">
-					<img v-if="data.item.image" style="max-width:40px;max-height:30px" 
+					<img v-if="data.item.image" style="max-width:40px;max-height:30px"
 							:src="storePath+data.item['.collection']+'/'+data.item.id+'/'+data.item.image+'?'+imageTimestamp" >
 					<span v-else>No image</span>
 				</a>
@@ -70,7 +70,7 @@
 				<span style="white-space:nowrap">{{ new Date(data.item.year+"/"+data.item.month+"/"+data.item.day).toLocaleDateString() }}</span>
 			</template>
 			-->
-			
+
 			<template slot="categories" slot-scope="data">
 				{{ JSON.stringify(data.item.categories) }}
 			</template>
@@ -80,16 +80,30 @@
 				<span v-if="typeof data.item.descr == 'string'" v-html="data.item.descr.slice(0,130)"></span>
 				<span v-if="data.item.descr && data.item.descr.length > 130">...</span>
 			</template>
-
+<!--
 			<template slot="content" slot-scope="data">
-				<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
-				<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">Edit</b-btn>
+				<div style="white-space:nowrap;text-align:center">
+					<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
+					<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">HTML</b-btn>
+				</div>
+				<div style="white-space:nowrap; text-align:center">
+					<button class="btn btn-outline-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
+					<b-btn size="xs" variant="outline-danger" @click="selectItem(data.item);deleteModal=true">Del</b-btn>
+				</div>
+			</template>
+-->
+			<template slot="actions" slot-scope="data">
+				<div style="white-space:nowrap; text-align:right">
+					<button class="btn btn-outline-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
+					<b-btn size="xs" variant="outline-danger" @click="selectItem(data.item);deleteModal=true">Del</b-btn>
+				</div>
+				<div style="white-space:nowrap;text-align:right">
+					<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
+					<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">HTML</b-btn>
+				</div>
+
 			</template>
 
-			<template slot="actions" slot-scope="data">
-				<button class="btn btn-outline-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
-				<b-btn size="xs" variant="outline-danger" @click="selectItem(data.item);deleteModal=true">Del</b-btn>
-			</template>
 
 		</b-table>
 
@@ -111,7 +125,7 @@
 
 
 		<!-- ------- DILAOGS --------- -->
-			
+
 		<!-- Modal NEW -->
 
 		<b-modal v-model="newModal" title="New" @shown="initNewItem()" c="selectedCopy={}" :no-fade="noFade"
@@ -120,11 +134,11 @@
 			<b-form-group label="Collection:*" horizontal>
 				<b-form-select v-model="selectedCopy['.collection']" :options="selectedCollections"></b-form-select></b-form-group>
 			<b-form-group label="Date:*" horizontal> <b-form-input type="date" v-model="selectedCopy.date"></b-form-input> </b-form-group>
-			<b-form-group label="Title:*" horizontal> 
+			<b-form-group label="Title:*" horizontal>
 				<b-form-textarea v-model="selectedCopy.title" required autofocus></b-form-textarea></b-form-group>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
 			<b-form-group label="Author:" horizontal> <b-form-input v-model="selectedCopy.author"></b-form-input>       </b-form-group>
-			<b-form-group label="Categories:" horizontal> 
+			<b-form-group label="Categories:" horizontal>
 				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select></b-form-group>
 		</b-modal>
 
@@ -139,7 +153,7 @@
 			<b-form-group label="Title:*" horizontal> <b-form-textarea v-model="selectedCopy.title"></b-form-textarea> </b-form-group>
 			<b-form-group label="Descr:"  horizontal> <b-form-textarea v-model="selectedCopy.descr" ></b-form-textarea> </b-form-group>
 			<b-form-group label="Author:" horizontal> <b-form-input v-model="selectedCopy.author"></b-form-input>       </b-form-group>
-			<b-form-group label="Categories:" horizontal> 
+			<b-form-group label="Categories:" horizontal>
 				<b-form-select v-model="selectedCopy.categories" :options="categories" multiple></b-form-select>
 			</b-form-group>
 		</b-modal>
@@ -148,7 +162,7 @@
 		<!-- Modal VIEW -->
 
 		<b-modal v-model="viewModal" size="lg" @show="fetchFileContent" no-fade
-			:title="selectedCopy.title"   
+			:title="selectedCopy.title"
 			ok-only @ok="selectedCopy = {}" ok-title="Exit" ok-variant="link"
 		>
 			<div v-html="htmlFileContent"></div>
@@ -158,7 +172,7 @@
 		<!-- Modal DELETE -->
 
 		<b-modal v-model="deleteModal" :no-fade="noFade"
-			title="Delete ?" header-text-variant="danger" 
+			title="Delete ?" header-text-variant="danger"
 			@ok="deleteItem" ok-variant="danger" ok-title="Delete" cancel-variant="link"
 		>
 			<div> <label class="col-sm-2">&nbsp;</label> <span> {{ selectedItem.id }} - [ {{ selectedItem[".collection"] }} ]</span> </div>
@@ -169,7 +183,7 @@
 		<!-- Modal IMAGE -->
 
 		<b-modal v-model="imageModal" @show="uploadImageContent = ''"  :no-fade="noFade"
-			:title="selectedCopy.title" 
+			:title="selectedCopy.title"
 			@ok="uploadImage" ok-title="Upload" cancel-variant="link" cancel-title="Exit"
 		>
 			<div class="form-group">
@@ -186,7 +200,7 @@
 			title="Remove Image"
 			@ok="removeImage" ok-title="Remove" cancel-variant="link" cancel-title="Exit"
 		>
-			Remove image ? 
+			Remove image ?
 		</b-modal>
 
 
@@ -198,12 +212,12 @@
 		>
 			<summernote v-model="htmlFileContent" autofocus placeholder="Write aArticle content..."></summernote>
 		</b-modal>
-	
-		
+
+
 		<!-- Modal COLLECTION -->
 
 		<b-modal v-model="collectionModal"  :no-fade="noFade"
-			title="Change Collection"  
+			title="Change Collection"
 			@ok="changeItemCollection" ok-title="Change" cancel-variant="link"
 		>
 			<b-form-group label="">
@@ -217,9 +231,9 @@
 <script>
 module.exports = {
 	data(){return {
-		
+
 		/* Entries */
-		
+
 		title: "Articles",
 		collections: ["articles","articles_DISABLED","articles_DELETED"],
 		selectedCollections: ["articles","articles_DISABLED"],
@@ -235,25 +249,25 @@ module.exports = {
 		  //{ key:"categories"},
 		  { key:'title', label:"Title/Category/Descr", sortable:true, tdClass:"w-50" },
 		  { key:'actions', class:"text-right" },
-		  { key:'content', label:"HTML", class:"text-right" },
-		  
+		  //{ key:'content', label:"HTML", class:"text-right" },
+
 		],
 		required:[".collection","date","title"],
 		storePath: "../store/",
 
 		/* Filters & Pagination */
-		
+
 		filter:"",
 		sortBy: null,
 		sortDesc: false,
-		sortDirection: 'asc',	    
-		
+		sortDirection: 'asc',
+
 		pageLengths: [ 2, 10, 25, 60, 100 ],
 		perPage: 10,
 		currentPage:1,
 
 		/* Table  */
-		
+
 		items: [],
 		filteredItems: [],
 		isBusy: false,
@@ -261,7 +275,7 @@ module.exports = {
 		selectedItem:{},
 
 		imageTimestamp: Date.now(),
-		
+
 		/* Modals */
 		noFade: true,
 
@@ -269,7 +283,7 @@ module.exports = {
 		htmlFileContent: "",
 		uploadImageContent: null,
 		summernote:null,
-		
+
 		newModal: false,
 		viewModal:false,
 		editModal:false,
@@ -306,21 +320,21 @@ module.exports = {
 		/* Commponent Services */
 
 		saveState(){
-			let stateName = this.$router.currentRoute.fullPath 
+			let stateName = this.$router.currentRoute.fullPath
 			let state = {
 				selectedId: this.selectedItem.id,
 				selectedCollections: JSON.stringify( this.selectedCollections ),
 				filter:this.filter,
 				sortBy: this.sortBy,
 				sortDesc: this.sortDesc,
-				sortDirection: this.sortDirection,	    
+				sortDirection: this.sortDirection,
 				perPage: this.perPage,
 				currentPage: this.currentPage,
 			}
 			localStorage.setItem(stateName,JSON.stringify(state))
 		},
 		loadState(){
-			let stateName = this.$router.currentRoute.fullPath 
+			let stateName = this.$router.currentRoute.fullPath
 			let state = localStorage.getItem(stateName)
 			if(state){
 				state = JSON.parse( state )
@@ -329,11 +343,11 @@ module.exports = {
 				this.filter = state.filter
 				this.sortBy = state.sortBy
 				this.sortDesc = state.sortDesc
-				this.sortDirection = state.sortDirection	    
+				this.sortDirection = state.sortDirection
 				this.perPage = state.perPage
 				this.currentPage = state.currentPage
 			}
-		}, 
+		},
 		selectItem(rowItem){
 		  	if(typeof rowItem == 'object'){
 		  		this.selectedItem = rowItem
@@ -343,9 +357,9 @@ module.exports = {
 		  		})
 		  	}
 		  	this.selectedCopy = Object.assign( {}, rowItem )
-		  
-			this.items.map((row)=>{ 
-				if(row.id == rowItem.id) 
+
+			this.items.map((row)=>{
+				if(row.id == rowItem.id)
 				  row._rowVariant="info";
 				else
 				  delete(row._rowVariant)
@@ -367,24 +381,24 @@ module.exports = {
 			return true
 		},
 
-		
+
 		/* Files Services */
-		
+
 		uploadImage(event){
 			event.preventDefault()
 
 			let img = this.uploadImageContent
 			if(!img) return alert("Image is required!")
-			
+
 			let filename = 'cover.'+img.type.split("/").pop()
-			
+
 			if( this.selectedCopy.image !== filename && this.selectedCopy.image ){
 				this.$store.dispatch("removeFile",{directory:this.directory,file:this.selectedCopy.image})
 			}
-			
+
 			let data = {path:this.directory, name:filename, data:img }
 			this.$store.dispatch("postFile", data)
-					.then( ret=>{ if( ret.ok ){ 
+					.then( ret=>{ if( ret.ok ){
 						this.imageModal = false
 						this.imageTimestamp = Date.now()
 						this.editField(this.selectedItem,"image",filename)
@@ -396,7 +410,7 @@ module.exports = {
 		},
 
 		fetchFileContent(){
-			this.htmlFileContent = "" 
+			this.htmlFileContent = ""
 			fetch(this.storePath+this.directory+"/content.html")
 				.then( ret => ret.text() )
 				.then(html=>{
@@ -421,7 +435,7 @@ module.exports = {
 			for( let collection of this.selectedCollections ){
 				this.$store.dispatch("getCollection", {collectionPath:this.storePath+collection}).then( ret=> {
 					ret.map(row=>{
-						row['.collection'] = collection; 
+						row['.collection'] = collection;
 						row.categories = row.categories ? row.categories.split(",") : []
 						return row })
 					this.items = this.items.concat(ret)
@@ -429,32 +443,32 @@ module.exports = {
 					if(!this.isBussy) this.selectItem( this.selectedItem )
 				})
 			}
-			
+
 		},
 		fetchCategories(){
 			if(!this.categories) return
 			this.categories = []
 			let path = this.storePath+this.collections[0].split("_").shift()+"Categories"
-			this.$store.dispatch("getCollection", {collectionPath: path} ).then(ret=>{ 
-				for( let cat of ret) { 
+			this.$store.dispatch("getCollection", {collectionPath: path} ).then(ret=>{
+				for( let cat of ret) {
 					this.categories.push({value:cat.id, text:cat.title})
 					//this.categories = ret // TypeError: Cannot read property 'some' of undefined ?!??!
 				}
 
 			})
-		},	
-		changeItemCollection(){ 
+		},
+		changeItemCollection(){
 			let newCollection = this.selectedCopy['.collection']
 			let oldCollection = this.selectedItem[".collection"]
 			let oldCollectionDir = oldCollection+"/"+this.selectedCopy.id
-			
-			newCollectionDir     = newCollection +"/"+this.selectedCopy.id
-			this.selectedCopy[".collection"] = newCollection 
 
-			
+			newCollectionDir     = newCollection +"/"+this.selectedCopy.id
+			this.selectedCopy[".collection"] = newCollection
+
+
 			this.$store.dispatch("moveFile", {from:oldCollectionDir,to:newCollectionDir})
 				.then( ret=>{ if(ret.ok) {
-					this.deleteItem() 
+					this.deleteItem()
 					this.newItem()
 				}})
 		},
@@ -473,7 +487,7 @@ module.exports = {
 
 			let data = {collection: this.selectedCopy[".collection"], items: this.items, data: this.selectedCopy}
 			this.$store.dispatch("postInsertItem",data)
-				.then( ret=>{ if(ret && ret.ok){ 
+				.then( ret=>{ if(ret && ret.ok){
 					this.newModal = false; this.selectItem( ret.id )
 				}})
 		},
@@ -482,11 +496,11 @@ module.exports = {
 				event.preventDefault()
 				return
 			}
-			
+
 			let data = { collection: this.selectedCopy[".collection"], item: this.selectedItem, data:this.selectedCopy }
 			this.$store.dispatch("postUpdateItem",data)
 				.then( ret=> { if(ret && ret.ok){
-					this.editModal = false 
+					this.editModal = false
 					this.selectItem( this.selectedItem ) // force refresh if field was not existing
 				}})
 		},
@@ -494,21 +508,26 @@ module.exports = {
 			let data = {collection: this.selectedItem[".collection"],item:row,data:{[field]:value}}
 			this.$store.dispatch("postUpdateItem", data).then(ret=>{ this.selectItem(row) /*force refresh*/})
 		},
-		deleteItem(cb){	      
-			let data = {collection: this.selectedItem[".collection"],items:this.items,item:this.selectedCopy}	      
+		deleteItem(cb){
+			let data = {collection: this.selectedItem[".collection"],items:this.items,item:this.selectedCopy}
 			let dataDir = { directory: this.directory }
 			this.$store.dispatch("removeItem",data)
-				.then( ret => { if(ret && ret.ok) 
+				.then( ret => { if(ret && ret.ok)
 					this.$store.dispatch("removeDirectory",dataDir)
-						.then( ret=>{ 
-							if(ret && ret.ok ) this.deleteModal = false; 
-							//if( cb ) cb() 
+						.then( ret=>{
+							if(ret && ret.ok ) this.deleteModal = false;
+							//if( cb ) cb()
 						})
 				})
 		}
 	}, // Methods
 	mounted(){
-		
+
 	}
 }
 </script>
+
+
+<style scoped>
+td .btn { width:40px }
+</style>

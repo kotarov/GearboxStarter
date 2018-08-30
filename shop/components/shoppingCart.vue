@@ -11,13 +11,12 @@
             <th>Item</th><th>Price</th><th>Qty</th><th align="center">Total</th>
           </tr></tead>-->
           <tbody>
-            <tr v-if="items.length == 0"><td colspan="4" class="text-center">No items in the cart</td></tr>
-            <tr v-else v-for="item of items">
+            <tr v-for="item of items">
               <td width="1em">
                 <img v-if="!item.image" src="../assets/img/NoImage.jpg" style="max-width:40px;max-height:40px">
                 <img v-else :src="'../store/products/'+item.id+'/'+item.image" style="max-width:50px;max-height:50px">
               </td>
-              <td><b>{{ item.name }}</b><br>{{ item.title }}</td>
+              <td><b>{{ $store.getters.translateField("name",item) }}</b><br>{{ $store.getters.translateField("title",item) }}</td>
               <td width="1em" style="white-space:nowrap">{{ $store.getters.formatCurrency(item.price) }}</td>
               <td width="1em">x</td>
               <td style="white-space:nowrap" width="1em">
