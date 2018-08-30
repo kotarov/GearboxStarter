@@ -5,10 +5,15 @@
       <p class="card-text">{{ item.descr }}</p>
       <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">Quick view</button>
-          <button @click="addToCart()" type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+          <!--<button type="button" class="btn btn-sm btn-outline-secondary">Quick view</button>-->
+          <button @click="addToCart()" type="button" class="btn btn-outline-secondary"
+            data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader"
+          >{{ $t('Add to cart') }}</button>
         </div>
-        <small class="text-muted">9 avaible</small>
+        <big class="h3">{{ $store.getters.formatCurrency(item.price) }}</big>
+        <!--
+        <small class="text-muted">{{ item.qty }} {{ $t('avaible') }}</small>
+      -->
       </div>
     </div>
   </div>
@@ -24,7 +29,12 @@ module.exports = {
     addToCart(){
       this.$store.dispatch("addProductToCart", {item:this.item,qty:1})
     }
-  }
+  },
+  i18n:{messages:{
+    bg:{
+      'avaible':"налични"
+    }
+  }}
 }
 </script>
 

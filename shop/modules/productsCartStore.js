@@ -3,13 +3,13 @@ const productsCartStore = {
       items:[]
   },
   getters:{
-    cartItems(state){ return state.items },
-    cartTotal(state){ return 0 },
-    cartItem(state){return function(item_or_id){
+    productsCartItems(state){ return state.items },
+    productsCartTotal(state){ return state.items.reduce((a,i)=>a+(parseFloat(i.price)*parseFloat(i.cartQty)),0) },
+    producstCartItem(state){return function(item_or_id){
       let id = typeof item_or_id == "object" ? item_or_id.id : item_or_id
       return state.items.filter(i => i.id == id )
     }},
-    cartCount(state){
+    productsCartCount(state){
       return state.items.reduce((a,i)=>a+i.cartQty,0)
     }
   },
