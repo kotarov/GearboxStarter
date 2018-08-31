@@ -6,7 +6,7 @@ const translatorStore = {
 
       let field_l = field+"_"+i18n.locale
 
-      return  obj[field_l] || obj[field] || ""
+      return  obj[field_l] && obj[field_l].length > 0 ? obj[field_l] : obj[field] || ""
     }}
   },
   actions:{}

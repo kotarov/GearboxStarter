@@ -1,7 +1,7 @@
 [
     {
         "date": "2018-08-24",
-        "categories": 123321123,
+        "categories": "catone",
         "_collection": "products",
         "title": "Product one's title",
         "id": 1535115723,
@@ -11,35 +11,72 @@
         "name": "Product One",
         "price": 4.15,
         "name_bg": "Продукт едно",
-        "title_bg": "Заглавието на продукт едно"
+        "title_bg": "Заглавието на продукт едно",
+        "files": [
+            {
+                "lastModified": 1534956264283,
+                "name": "Screenshot from 2018-08-22 19-44-24.png",
+                "size": 572665,
+                "type": "image/png"
+            }
+        ]
     },
     {
         "date": "2018-08-25",
-        "categories": "",
+        "categories": "catone",
         "_collection": "products",
         "title": "Product 2",
         "descr": "Description of product 2",
         "author": "Svetlio",
         "id": 1535183238,
-        "name": "Продукт две",
+        "name": "Product two",
         "price": 120,
-        "_rowVariant": "info"
+        "_rowVariant": "info",
+        "name_bg": "Пр.две",
+        "title_bg": "",
+        "qty": "null",
+        "files": [
+            {
+                "lastModified": 1535190841705,
+                "name": "gearbox_bootstrap.png",
+                "size": 3709,
+                "type": "image/png"
+            },
+            {
+                "lastModified": 1534522128673,
+                "name": "Indigo_full.png",
+                "size": 11842,
+                "type": "image/png"
+            },
+            {
+                "lastModified": 1534522160637,
+                "name": "lake-indigo-carmine-food-colour-500x500.jpg",
+                "size": 35038,
+                "type": "image/jpeg"
+            }
+        ],
+        "image": ""
     },
     {
         "date": "2018-08-27",
-        "categories": 123321123,
+        "categories": "catone,bulgarian",
         "_collection": "products",
         "title": "product3",
         "id": 1535353960,
         "descr": "",
-        "name": "Продукт три",
+        "name": "Pr. three",
         "price": 12,
         "_rowVariant": "info",
-        "qty": 0
+        "qty": 0,
+        "name_bg": "Продукт три",
+        "title_bg": "",
+        "descr_bg": "",
+        "brand": "null",
+        "image": "cover.png"
     },
     {
         "date": "2018-08-27",
-        "categories": "",
+        "categories": "bulgarian",
         "_collection": "products",
         "title": "product4",
         "id": 1535353968,
@@ -56,7 +93,7 @@
     },
     {
         "date": "2018-08-30",
-        "categories": 123321123,
+        "categories": "catone",
         "_collection": "products",
         "name": "Svetlio",
         "name_bg": "Светльо",
@@ -67,6 +104,8 @@
         "price": 222,
         "id": 1535632945,
         "brand": "от одбрите",
-        "qty": 5
+        "qty": 5,
+        "files": [],
+        "image": ""
     }
 ]

@@ -12,14 +12,15 @@ const StoreService = {
 					.then( ret=>{ progress.stop(); return ret } )
 					.catch( error=>{ progress.stop();alert(error) } )
 		},
-		
+
 		postUpdateItem({state, dispatch, commit},{collection,items,item,id,data}){
 			if(!id) id = item && item.id ? item.id : data.id
 			if(!collection || !item || !data || !id) return
-			
+
 			progress.start()
 			let url = "api/postUpdateItem.php?collection="+encodeURIComponent(collection)+"&id="+encodeURIComponent(id)
-			let fData = new FormData(); for(let key of Object.keys(data)) fData.append(key,data[key])
+			let fData = new FormData(); for(let key of Object.keys(data)) fData.append(key,typeof data[key]=='object'?JSON.stringify(data[key]):data[key])
+
 			return fetch( url, { method:"post", body: fData } )
 					.then( ret=>ret.json() )
 					.then( ret=>{ progress.stop();  if(ret.ok) item = Object.assign(item, data);return ret })
@@ -58,22 +59,22 @@ const StoreService = {
 					.catch( error => { progress.stop(); alert(error) } )
 		},
 
-		
+
 		/** Files */
 		postFile({state,dispatch, commit},{path,name,data}){
 			progress.start()
-			let url = "api/postFile.php" 
+			let url = "api/postFile.php"
 			let fData = new FormData();
-			let type = "text/html" 
+			let type = "text/html"
 			if( typeof data == 'object' ){
 				type = data.type
-			} 		
-			let blob = new Blob([data],{type:"text/html"}) 
-			
+			}
+			let blob = new Blob([data],{type:"text/html"})
+
 			// fData.append("path", path)
 			// fData.append("name", name)
 			fData.append(path, blob, name)
-			
+
 			return fetch( url, { method:"post", body: fData } )
 				.then( ret=>ret.json() )
 				.then( ret=>{ progress.stop(); return ret })
@@ -85,7 +86,7 @@ const StoreService = {
 			let url = "api/moveFile.php?from="+encodeURIComponent(from)+"&to="+encodeURIComponent(to)
 			return fetch( url )
 				.then( ret=>ret.json() )
-				.then( ret=>{ progress.stop(); return ret }) 
+				.then( ret=>{ progress.stop(); return ret })
 				.catch( ret=>{progress.stop();alert(error) } )
 		},
 		removeFile({state,dispatch,commit},{directory,file}){
@@ -101,14 +102,14 @@ const StoreService = {
 		removeDirectory({state,dispatch,commit},{directory}){
 			if(!directory) return
 
-			let url = "api/removeDirectory.php?directory="+encodeURIComponent(directory) 
+			let url = "api/removeDirectory.php?directory="+encodeURIComponent(directory)
 			return fetch( url )
 				.then( ret=>ret.json() )
 				.then( ret=>{ progress.stop(); return ret })
 				.catch( error=>{ progress.stop();alert(error) })
 		},
 
-		
+
 	}
 }
 
@@ -124,15 +125,15 @@ const UserService = {
 		isLogged: false
 	},
 	getters:{
-		isLogged(state){ 
+		isLogged(state){
 			return state.isLogged
-			//state.loginName != "" ? true : false  
+			//state.loginName != "" ? true : false
 		},
 		userFullName(state){
 			return state.firstName + " " + state.lastName
 		}
 	},
-	
+
 	actions:{
 		init({state, dispatch, commit}){
 			dispatch("loadLoginData")
@@ -158,7 +159,7 @@ const UserService = {
 			const newRouter = new VueRouter({ routes: CONFIG.routes, linkActiveClass:"active" })
 			router.matcher = newRouter.matcher
 
-			router.addRoutes( (routes||state.menu||[] ).map( r => { 
+			router.addRoutes( (routes||state.menu||[] ).map( r => {
 				return { path: r.path, component: httpVueLoader("./modules/"+r.component) }
 			} ))
 		},
@@ -175,7 +176,7 @@ const UserService = {
 			let url = "users/" + loginData.loginName + "." + loginData.loginPass +".json"
 			//let url = "https://firebasestorage.googleapis.com/v0/b/rest-31b69.appspot.com/o/demo."+loginData.loginPass+".json?alt=media&token=ddd6b40a-6fe0-4c1f-b084-1d4e1088bb8e"
 
-			return new Promise((resolve, reject)=>{ 
+			return new Promise((resolve, reject)=>{
 				fetch(url, { mode: 'no-cors' } )
               	.then(ret=>ret.json())
               	.then(ret=>{
@@ -190,7 +191,7 @@ const UserService = {
 	              	dispatch("addRoutes")
 
 	              	resolve()
-              	}, error=>{ 
+              	}, error=>{
               		dispatch("logout")
               		reject()
               	}).catch(e => {
@@ -208,5 +209,3 @@ const UserService = {
 		}
 	}
 }
-
-

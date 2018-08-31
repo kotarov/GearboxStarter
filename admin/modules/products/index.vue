@@ -65,6 +65,11 @@
 				<a href="#" v-if="data.item.image" @click.prevent="selectItem(data.item);removeImageModal=true" class="btn btn-link" title="Remove image" >&times;</a>
 			</template>
 
+			<template slot="files" slot-scope="data">
+				<div class="text-center">
+					<a href="#" :class="{'btn-outline-secondary':!data.item.files || data.item.files.length < 1}" class="btn btn-secondary btn-xs" @click.prevent="selectItem(data.item);filesModal=true">{{ data.item.files ? data.item.files.length : 0 }}</a>
+				</div>
+			</template>
 			<!--
 			<template slot="date" slot-scope="data">
 				<span style="white-space:nowrap">{{ new Date(data.item.year+"/"+data.item.month+"/"+data.item.day).toLocaleDateString() }}</span>
@@ -233,6 +238,39 @@
 		</b-modal>
 
 -->
+
+		<!-- Modal FILES -->
+		<b-modal v-model="filesModal" size="lg" :no-fade="noFade" @show=""
+		 	:title="'Files of < '+selectedCopy.name+' >'" ok-only ok-variant="link" ok-title="Close">
+				<div class="row container">
+						<table class="table table-sm table-striped">
+							<thead class="thead-dark"><tr size="1em"><th></th><th>File Name</th><th width="1em">Type</th><th size="1em">Size</th><th width="1em">Act</th></tr></thead>
+							<tbody>
+								<tr v-if="!selectedCopy.files || selectedCopy.length < 1"><td colspan="5">No files</td></tr>
+								<tr v-for="file of selectedItem.files">
+									<td align="center"><a :href="'../store/products/'+selectedItem.id+'/files/'+file.name" target="_null">
+										<img v-if="file.type.substring(0,5)=='image'" :src="'../store/products/'+selectedItem.id+'/files/'+file.name">
+										<img v-else-if="file.type.substring(0,4)=='text'" src="assets/icons/file-text.svg">
+										<img v-else-if="file.type.substring(0,5)=='audio'" src="assets/icons/volume-2.svg">
+										<img v-else-if="file.type.substring(0,5)=='video'" src="assets/icons/video.svg">
+										<img v-else src="assets/icons/file.svg">
+									</a></td>
+									<td>{{ file.name }}</td>
+									<td>{{ file.type }}</td>
+									<td style="white-space:nowrap" align="right">{{ (file.size/1024).toFixed(1) }} k</td>
+
+									<td> <button class="btn btn-xs btn-danger" @click="deleteFile(file)">&times;</button>
+								</tr>
+							</tbody>
+
+						</table>
+						<div class="col-8"> <b-form-file v-model="uploadFileContent" ></b-form-file> </div>
+						<div class="col-2"> <button class="btn btn-primary" @click="uploadFile">Upload</button> </div>
+				</div>
+		</b-modal>
+
+
+
 		<!-- Modal COLLECTION -->
 
 		<b-modal v-model="collectionModal"  :no-fade="noFade"
@@ -267,7 +305,8 @@ module.exports = {
 		fields:[
 		  //{ key:'isActive',sortable:true },
 		  { key: '.collection', sortable:true },
-		  { key:'image'},
+		  { key: 'image' },
+			{ key: 'files', sortable:true },
 		  //{ key:'id', sortable:true },
 		  { key: 'name', label:"Name/Id", sortable:true },
 		  //{ key:"categories"},
@@ -314,12 +353,14 @@ module.exports = {
 		selectedCopy: {},
 		htmlFileContent: "",
 		uploadImageContent: null,
+		uploadFileContent: null,
 		summernote:null,
 
 		newModal: false,
 		viewModal:false,
 		editModal:false,
 		imageModal: false,
+		filesModal: false,
 		removeImageModal:false,
 		fileModal: false,
 		deleteModal: false,
@@ -415,6 +456,31 @@ module.exports = {
 
 
 		/* Files Services */
+		uploadFile(event){
+			event.preventDefault()
+
+			let file = this.uploadFileContent
+			if(!file) return alert("File is required")
+
+			let files = Array.isArray(this.selectedItem.files) ? this.selectedItem.files : []
+			if( files.find(f=>f.name==file.name) ) return alert("File with the same name exists !")
+
+			let data = { path: this.directory+"/files", name: file.name, data: file }
+			this.$store.dispatch("postFile",data)
+			.then( ret => {
+					if(ret.ok){
+						let dbData = { lastModified: file.lastModified, name: file.name, size: file.size, type: file.type }
+						files.push(dbData)
+						this.editField(this.selectedItem,"files",files)
+					}
+			})
+		},
+		deleteFile(file){
+			if(confirm('DELETE:   '+file.name)){
+				this.$store.dispatch("removeFile", { directory: this.directory+"/files", file: file.name } )
+				.then( ret=>{ if(ret.ok) this.editField(this.selectedItem,"files",this.selectedItem.files.filter(f=>f.name!==file.name))})
+			}
+		},
 
 		uploadImage(event){
 			event.preventDefault()
@@ -559,3 +625,10 @@ module.exports = {
 	}
 }
 </script>
+
+<style>
+td img {
+	max-width:40px;
+	max-height:30px
+}
+</style>

@@ -1,11 +1,12 @@
 [
     {
-        "id": 123321123,
+        "id": "catone",
         "title": "Product Category One",
         "image": "",
         "descr": "Opisanie",
         "_collection": "productsCategories",
-        "title_bg": "Продуктова категория ЕДНО"
+        "title_bg": "Продуктова категория ЕДНО",
+        "_rowVariant": "info"
     },
     {
         "_collection": "productsCategories",
