@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "date": "2018-08-30",
+        "categories": "catone",
+        "_collection": "products_DISABLED",
+        "name": "Svetlio",
+        "name_bg": "Светльо",
+        "title": "My Name",
+        "title_bg": "Ми името ми",
+        "descr": "and some description",
+        "descr_bg": "а тук е описаниетп",
+        "price": 222,
+        "id": 1535632945,
+        "brand": "от одбрите",
+        "qty": 5,
+        "files": "",
+        "image": ""
+    }
+]

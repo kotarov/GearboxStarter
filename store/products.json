@@ -19,11 +19,14 @@
                 "size": 572665,
                 "type": "image/png"
             }
-        ]
+        ],
+        "packs": []
     },
     {
         "date": "2018-08-25",
-        "categories": "catone",
+        "categories": [
+            "catone"
+        ],
         "_collection": "products",
         "title": "Product 2",
         "descr": "Description of product 2",
@@ -34,18 +37,12 @@
         "_rowVariant": "info",
         "name_bg": "Пр.две",
         "title_bg": "",
-        "qty": "null",
+        "qty": 1,
         "files": [
             {
                 "lastModified": 1535190841705,
                 "name": "gearbox_bootstrap.png",
                 "size": 3709,
-                "type": "image/png"
-            },
-            {
-                "lastModified": 1534522128673,
-                "name": "Indigo_full.png",
-                "size": 11842,
                 "type": "image/png"
             },
             {
@@ -55,7 +52,8 @@
                 "type": "image/jpeg"
             }
         ],
-        "image": ""
+        "image": "",
+        "packs": []
     },
     {
         "date": "2018-08-27",
@@ -72,7 +70,8 @@
         "title_bg": "",
         "descr_bg": "",
         "brand": "null",
-        "image": "cover.png"
+        "image": "cover.png",
+        "packs": []
     },
     {
         "date": "2018-08-27",
@@ -90,22 +89,5 @@
         "descr_bg": "",
         "brand": "null",
         "qty": 8
-    },
-    {
-        "date": "2018-08-30",
-        "categories": "catone",
-        "_collection": "products",
-        "name": "Svetlio",
-        "name_bg": "Светльо",
-        "title": "My Name",
-        "title_bg": "Ми името ми",
-        "descr": "and some description",
-        "descr_bg": "а тук е описаниетп",
-        "price": 222,
-        "id": 1535632945,
-        "brand": "от одбрите",
-        "qty": 5,
-        "files": [],
-        "image": ""
     }
 ]

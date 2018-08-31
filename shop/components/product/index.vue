@@ -1,7 +1,21 @@
 <template><div class="container py-5">
-  <div class="media">
-    <img class="align-self-start mr-3 col-md-6" :src="imageUrl" alt="Generic placeholder image">
-    <div class="media-body">
+  <div class="row">
+    <div class="col-md-6 row">
+      <a data-toggle="lightbox" data-gallery="product" :href="imageUrl" >
+        <img class="align-self-start mr-3 col-12" :src="imageUrl" alt="Generic placeholder image">
+      </a>
+      <div class="col-12 row py-3">
+          <div v-for="file of product.files" class="col-4">
+            <a data-toggle="lightbox" data-gallery="product" :href="'../store/products/'+product.id+'/files/'+encodeURIComponent(file.name)" >
+              <img v-if="file.type.substring(0,5)=='image'" :src="'../store/products/'+product.id+'/files/'+encodeURIComponent(file.name)" class="img-fluid">
+            </a>
+          <!--
+            <video v-if="file.type.substring(0,5)=='video'" :src="'../store/products/'+product.id+'/files/'+encodeURIComponent(file.name)" width="100%" height="100%" controls></video>
+          -->
+          </div>
+      </div>
+    </div>
+    <div class="media-body col-md-6">
       <h5 class="mt-0 h1">{{ $store.getters.translateField("name",product) }}</h5>
       <div>{{ $store.getters.translateField("title",product) }}</div>
       <hr>

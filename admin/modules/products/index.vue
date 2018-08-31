@@ -1,7 +1,7 @@
 <template>
 	<div class="pt-3 pb-2 mb-3 border-bottom">
 
-		<!-- Header -->
+		<!-- ---- Header ---- -->
 
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 _border-bottom">
 			<h2 class="h2">{{ title }}</h2>
@@ -30,7 +30,7 @@
 		></b-form-checkbox-group>
 
 
-		<!-- Table -->
+		<!-- ---- Table ---- -->
 
 		<b-table :id="collections[0]+'_table'" show-empty pagination responsive striped hover small caption-top
 		:busy.sync="isBusy"
@@ -93,16 +93,15 @@
 				<span v-if="data.item.descr && data.item.descr.length > 130">...</span>
 				-->
 			</template>
-<!--
-			<template slot="content" slot-scope="data">
-				<div style="text-align:center;white-space:nowrap">
-				  <b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
-						  <b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">Edit</b-btn>
-				</div>
-			</template>
--->
+
 			<template slot="price" slot-scope="data">
 				<div style="text-align:right">{{ parseFloat( data.item.price ).toFixed(2) }} </div>
+			</template>
+
+			<template slot="packs" slot-scope="data">
+				<div class="text-center">
+					<a href="#" :class="{'btn-outline-secondary':!data.item.packs || data.item.packs.length < 1}" class="btn btn-secondary btn-xs" @click.prevent="selectItem(data.item);packsModal=true">{{ data.item.packs ? data.item.packs.length : '+' }}</a>
+				</div>
 			</template>
 
 			<template slot="actions" slot-scope="data">
@@ -133,8 +132,8 @@
 
 		<!-- ------ DILAOGS ------ -->
 
-		<!-- Modal NEW -->
 
+		<!-- Modal NEW -->
 		<b-modal v-model="newModal" title="New" @shown="initNewItem()" c="selectedCopy={}" :no-fade="noFade"
 			ok-title="Save" cancel-variant="link" @ok="newItem"
 		>
@@ -158,8 +157,8 @@
 			<b-form-group label="Qty:" horizontal> <b-form-input type="number" step="1" v-model="selectedCopy.qty"></b-form-input>    </b-form-group>
 		</b-modal>
 
-		<!-- Modal EDIT -->
 
+		<!-- Modal EDIT -->
 		<b-modal v-model="editModal" title="Edit"  :no-fade="noFade"
 			@show=""
 			@ok="editItem" ok-title="Save" cancel-title="Exit" cancel-variant="link"
@@ -184,17 +183,16 @@
 
 
 		<!-- Modal VIEW -->
-<!--
+		<!--
 		<b-modal v-model="viewModal" size="lg" @show="fetchFileContent" no-fade
 			:title="selectedCopy.title"
 			ok-only @ok="selectedCopy = {}" ok-title="Exit" ok-variant="link"
 		>
 			<div v-html="htmlFileContent"></div>
 		</b-modal>
--->
+		-->
 
 		<!-- Modal DELETE -->
-
 		<b-modal v-model="deleteModal" :no-fade="noFade"
 			title="Delete ?" header-text-variant="danger"
 			@ok="deleteItem" ok-variant="danger" ok-title="Delete" cancel-variant="link"
@@ -205,48 +203,44 @@
 
 
 		<!-- Modal IMAGE -->
-
 		<b-modal v-model="imageModal" @show="uploadImageContent = ''"  :no-fade="noFade"
 			:title="selectedCopy.title"
-			@ok="uploadImage" ok-title="Upload" cancel-variant="link" cancel-title="Exit"
-		>
-			<div class="form-group">
-				<img v-if="selectedCopy.image"  :src="storePath+selectedItem['.collection']+'/'+selectedItem.id+'/'+selectedItem.image+'?'+imageTimestamp" style="max-width:100%">
-			</div>
-			<b-form-group label="Change Image:*" horizontal>
-				<b-form-file v-model="uploadImageContent"></b-form-file>
-			</b-form-group>
-
+			@ok="uploadImage" ok-title="Upload" cancel-variant="link" cancel-title="Exit">
+					<div class="form-group">
+						<img v-if="selectedCopy.image"  :src="storePath+selectedItem['.collection']+'/'+selectedItem.id+'/'+selectedItem.image+'?'+imageTimestamp" style="max-width:100%">
+					</div>
+					<b-form-group label="Change Image:*" horizontal>
+						<b-form-file v-model="uploadImageContent"></b-form-file>
+					</b-form-group>
 		</b-modal>
 
 		<!-- Modal REMOVE IMAGE -->
 		<b-modal v-model="removeImageModal" @show="" size="sm"  :no-fade="noFade"
 			title="Remove Image"
-			@ok="removeImage" ok-title="Remove" cancel-variant="link" cancel-title="Exit"
-		>
-			Remove image ?
+			@ok="removeImage" ok-title="Remove" cancel-variant="link" cancel-title="Exit">
+					Remove image ?
 		</b-modal>
 
 
 		<!-- Modal FILE -->
-<!--
+		<!--
 		<b-modal v-model="fileModal" size="screen" no-fade @show="fetchFileContent"  :no-fade="noFade"
 			:title="selectedCopy.title + ' ['+htmlFileContent.length+' b]'"
 			@ok="changeFileContent" ok-title="Save" cancel-variant="link"
 		>
 			<summernote v-model="htmlFileContent" autofocus placeholder="Write aArticle content..."></summernote>
 		</b-modal>
+		-->
 
--->
 
 		<!-- Modal FILES -->
 		<b-modal v-model="filesModal" size="lg" :no-fade="noFade" @show=""
 		 	:title="'Files of < '+selectedCopy.name+' >'" ok-only ok-variant="link" ok-title="Close">
 				<div class="row container">
-						<table class="table table-sm table-striped">
+						<table class="table table-sm table-striped col-12">
 							<thead class="thead-dark"><tr size="1em"><th></th><th>File Name</th><th width="1em">Type</th><th size="1em">Size</th><th width="1em">Act</th></tr></thead>
 							<tbody>
-								<tr v-if="!selectedCopy.files || selectedCopy.length < 1"><td colspan="5">No files</td></tr>
+								<tr v-if="!selectedCopy.files || selectedCopy.files.length < 1"><td colspan="5">No files</td></tr>
 								<tr v-for="file of selectedItem.files">
 									<td align="center"><a :href="'../store/products/'+selectedItem.id+'/files/'+file.name" target="_null">
 										<img v-if="file.type.substring(0,5)=='image'" :src="'../store/products/'+selectedItem.id+'/files/'+file.name">
@@ -258,21 +252,19 @@
 									<td>{{ file.name }}</td>
 									<td>{{ file.type }}</td>
 									<td style="white-space:nowrap" align="right">{{ (file.size/1024).toFixed(1) }} k</td>
-
 									<td> <button class="btn btn-xs btn-danger" @click="deleteFile(file)">&times;</button>
 								</tr>
 							</tbody>
-
 						</table>
-						<div class="col-8"> <b-form-file v-model="uploadFileContent" ></b-form-file> </div>
-						<div class="col-2"> <button class="btn btn-primary" @click="uploadFile">Upload</button> </div>
+						<div class="col-12 row">
+							<div class="col-8"> <b-form-file v-model="uploadFileContent" ></b-form-file> </div>
+							<div class="col-2"> <button class="btn btn-primary" @click="uploadFile">Upload</button> </div>
+						</div>
 				</div>
 		</b-modal>
 
 
-
 		<!-- Modal COLLECTION -->
-
 		<b-modal v-model="collectionModal"  :no-fade="noFade"
 			title="Change Collection"
 			@ok="changeItemCollection" ok-title="Change" cancel-variant="link"
@@ -282,8 +274,55 @@
 			</b-form-group>
 		</b-modal>
 
+
+		<!-- Modal PACKS -->
+		<b-modal v-model="packsModal" size="lg" :no-fade="noFade" @show=""
+			:title="'Packs of < '+selectedCopy.name+' >'" ok-only ok-variant="link" ok-title="Close">
+				<div class="row container">
+						<div v-if="!selectedCopy.packs || selectedCopy.packs.length < 1" class="col-12 h3">
+							This Product Is Not a Packet
+						</div>
+
+						<div class="col-12 row" style="margin-bottom:1em">
+							<div class="col-8">
+							 <v-select label="name" v-model="vSelectItem.data" :options='items'>
+								 <template slot="option" slot-scope="option">
+									 <img v-if="option.image" :src="'../store/products/'+option.id+'/'+option.image" style="max-width:30px;max-height:30px">
+									 <img v-else src="assets/icons/camera-off.svg" style="max-width:30px;max-height:30px">
+									 {{ option.name }} <i class="text-muted">{{ option.title }}</i> {{ option.price }}
+								 </template>
+							 </v-select>
+						 </div>
+						 <div class="col-2">
+								<b-form-input type="number" v-model="vSelectItem.qty"></b-form-input>
+						 </div>
+						 <div class="col-2">
+							 <button class="btn btn-primary float-right" @click="addItemToPack(vSelectItem)">Add</button>
+						</div>
+					</div>
+
+						<table v-if="selectedCopy.packs && selectedCopy.packs.length > 0" class="col-12 table table-sm table-striped">
+							<thead class="thead-dark"><tr size="1em"><th></th><th>Name</th><th width="1em">Qty</th><th width="1em">Act</th></tr></thead>
+							<tbody>
+								<tr v-for="item of selectedCopy.packs">
+									<td align="center" width="1em"> <img :src="'../store/products/'+item.id+'/'+item.data.image"> </td>
+									<td>{{ item.data.name }}</td>
+									<td>{{ item.qty }}</td>
+									<td> <button class="btn btn-xs btn-danger" @click="removeItemFromPack(item)">&times;</button>
+								</tr>
+							</tbody>
+						</table>
+
+
+
+				</div>
+		</b-modal>
+
 	</div>
 </template>
+
+
+	<!-- ---- SCRIPT ---- -->
 
 <script>
 module.exports = {
@@ -313,6 +352,7 @@ module.exports = {
 		  { key:'title', label:"Title/Category", sortable:true, tdClass:"w-50" },
 			{ key:'qty', sortable:true },
 		  { key:'price', sortable:true},
+			{ key:'packs', sortable:true},
 		  { key:'actions', class:"text-right" },
 		  //{ key:'content', label:"HTML", class:"text-right" },
 
@@ -355,6 +395,7 @@ module.exports = {
 		uploadImageContent: null,
 		uploadFileContent: null,
 		summernote:null,
+		vSelectItem:{data:"",qty:0},
 
 		newModal: false,
 		viewModal:false,
@@ -363,6 +404,7 @@ module.exports = {
 		filesModal: false,
 		removeImageModal:false,
 		fileModal: false,
+		packsModal: false,
 		deleteModal: false,
 		collectionModal:false,
 
@@ -453,6 +495,28 @@ module.exports = {
 			}
 			return true
 		},
+		addItemToPack(item){
+			item.id = item.data.id
+			let packs = this.selectedCopy.packs && this.selectedCopy.packs.length > 0 ? this.selectedCopy.packs : []
+			let exists = packs.find(i=>item.data && i.data.id==item.data.id)
+			if(exists){
+				return alert("This item exists !")
+				//exists.qty = parseInt(exists.qty) + parseInt(item.qty)
+			} else {
+				if(!item.data.id) return alert("No item selected")
+				if(item.qty < 1) return alert("Qty must be > 0")
+
+				this.editField(this.selectedItem,"packs",packs)
+				packs.push(item)
+			}
+		},
+		removeItemFromPack(item){
+			if(confirm('DELETE: "'+item.data.name+'"')) {
+					let packs = this.selectedCopy.packs.filter(i=>i.id !== item.id)
+					this.editField(this.selectedCopy,"packs",packs)
+				}
+		},
+
 
 
 		/* Files Services */
