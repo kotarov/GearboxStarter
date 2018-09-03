@@ -57,7 +57,7 @@
       </div>
       <div class="col-md-8 order-md-1">
 
-        <form @submit="alert('submiting')" class="needs-validation" _novalidate>
+        <form @submit="alert('Споко и това ще стане !')" class="needs-validation" _novalidate>
 
 
           <!-- LOGIN
@@ -258,5 +258,5 @@ module.exports = {
 }
 </script>
 <style scoped>
-  .price{ white-space: nowrap} 
+  .price{ white-space: nowrap}
 </style>
