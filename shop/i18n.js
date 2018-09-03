@@ -8,6 +8,7 @@ const translations = {
           'Summary':"Сума",
           "Tel.":"Тел.",
           "Del":"Изт",
+          "Carrier":"Доставчик",
           "Total":"Всичко",
           "About":"За нас",
           "Contacts":"Контакти",

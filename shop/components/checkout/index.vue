@@ -10,7 +10,13 @@
     <br>
 
     <div class="row">
-      <div class="col-md-4 order-md-2 mb-4">
+      <div class="col-md-4 order-md-2 mb-4" _style="position:fixed;top:70px; right:5px">
+        <!-- <h4 class="d-flex align-item-center mb-3"></h4>
+        <div class="" style="background:rgba(0,0,0,0.5); height:200px">
+
+        </div>-->
+
+
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">{{ $t('Your cart') }}</span>
           <span class="badge badge-secondary badge-pill">{{ $store.getters.productsCartCount }}</span>
@@ -21,21 +27,21 @@
               <h6 class="my-0">{{ $store.getters.translateField("name",item) }} <span class="text-muted px-2">x</span> {{ item.cartQty }}</h6>
               <small class="text-muted">{{ $store.getters.translateField("title",item) }}</small>
             </div>
-            <span class="text-muted">{{ $store.getters.formatCurrency(item.cartQty*item.price) }}</span>
+            <span class="text-muted price">{{ $store.getters.formatCurrency(item.cartQty*item.price) }}</span>
           </li>
 
-<!--
+
           <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Discount</h6>
-             <small>EXAMPLECODE</small>
+            <div class="text-mutted">
+              <h6 class="my-0">{{ $t('Carrier') }}</h6>
+             <b>{{ order.carrier ? $store.getters.translateField('name',order.carrier) : "" }}</b>
             </div>
-            <span class="text-success">{{ (0).toFixed(2) }}</span>
+            <span class="text-success price">{{ $store.getters.price(order.carrier ? order.carrier.price : 0) }}</span>
           </li>
--->
-          <li class="list-group-item d-flex justify-content-between bg-light">
+
+          <li class="list-group-item d-flex justify-content-between _bg-light">
             <strong>{{ $t('Total') }} </strong>
-            <span class="h3">{{ $store.getters.formatCurrency($store.getters.productsCartTotal) }}</span>
+            <span class="h3 price">{{ $store.getters.formatCurrency($store.getters.productsCartTotal + parseFloat(order.carrier ? order.carrier.price : 0) ) }}</span>
           </li>
         </ul>
         <!--
@@ -51,176 +57,158 @@
       </div>
       <div class="col-md-8 order-md-1">
 
-        <form class="needs-validation" novalidate>
-<!--
-          <h4 class="mb-3">Personal data</h4>
-          <div class="row">
+        <form @submit="alert('submiting')" class="needs-validation" _novalidate>
+
+
+          <!-- LOGIN
+          ========================  -->
+          <div class="custom-control custom-checkbox float-right">
+            <input v-model="noLogin" id="no-login" type="checkbox" class="custom-control-input">
+            <label class="custom-control-label" for="no-login">I will not track this order</label>
+          </div>
+          <h4 class="mb-3">Account</h4>
+
+          <div v-if="!noLogin" class="row">
             <div class="col-md-6 mb-3">
-              <label for="firstName">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
+              <label>User name</label>
+              <input v-model="account.userName" type="text" class="form-control" placeholder="" required>
+              <div class="invalid-feedback"> Valid user name is required. </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="lastName">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
+              <label>Password</label>
+              <input v-model="account.userPassword" type="password" class="form-control" placeholder="" required>
+              <div class="invalid-feedback"> Password is required. </div>
             </div>
           </div>
--->
-<!--
+
+
+
+          <hr class="mb-4">
+
+
+          <!-- SHIPPING
+          =========================== -->
+          <h4 class="mb-3">Shipping</h4>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>First name</label>
+              <input v-model="order.shippingFirstName" type="text" class="form-control" required>
+              <div class="invalid-feedback"> Valid first name is required. </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Last name</label>
+              <input v-model="order.shippingLastName" type="text" class="form-control" required>
+              <div class="invalid-feedback"> Valid last name is required. </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label>Phone</label>
+              <input v-model="order.shippingPhone" type="phone" class="form-control" required>
+              <div class="invalid-feedback"> Please enter a valid phone number for shipping updates.</div>
+            </div>
+            <div class="col-md-7 mb-3">
+              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <input v-model="order.shippingEmail" type="email" class="form-control">
+              <div class="invalid-feedback"> Please enter a valid email address for shipping updates.</div>
+            </div>
+          </div>
+
           <div class="mb-3">
-            <label for="username">Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
-              </div>
-              <input type="text" class="form-control" id="username" placeholder="Username" required>
-              <div class="invalid-feedback" style="width: 100%;">
-                Your username is required.
-              </div>
-            </div>
+            <label>Address</label>
+            <input v-model="order.shippingAddress" type="text" class="form-control" required>
+            <small class="text-muted">Enter the full address - with country and ZIP code.</small>
+            <div class="invalid-feedback"> Please enter your shipping address. </div>
           </div>
--->
-<!--
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="phone">Phone</label>
-              <input type="phone" class="form-control" id="phone" placeholder="">
-              <div class="invalid-feedback">
-                Please enter a valid phone number for shipping updates.
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="email">Email <span class="text-muted">(Optional)</span></label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
-            <div class="invalid-feedback">
-              Please enter a valid email address for shipping updates.
-            </div>
-          </div>
-  -->
-
-<!--
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="firstName">Phone number</label>
-              <input type="text" class="form-control" id="phone" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid phone number is required.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="lastName">Email address</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" value="" required>
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-          </div>
-
-
-          <br>
-          <hr class="mb-4">
--->
-          <h4 class="mb-3">Shipping address</h4>
-          <address-form></address-form>
 
           <hr class="mb-4">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" v-model="invoiceAddressIsTheSame" class="custom-control-input" id="same-address">
-            <label class="custom-control-label" for="same-address">Invoice address is the same as my shipping address</label>
-          </div>
 
-          <div v-if="!invoiceAddressIsTheSame">
-            <hr class="mb-4">
-            <h4 class="mb-3">Invoice address</h4>
-            <address-form></address-form>
-          </div>
-
-
-          <hr class="mb-4">
-        <div class="row">
-        <div class="col-md-6">
+          <!--  CARRIER
+          ============================ -->
           <h4 class="mb-3">Carrier</h4>
           <div class="d-block my-3">
-            <div class="custom-control custom-radio">
-              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-              <label class="custom-control-label" for="credit">Ekont</label>
-            </div>
-            <div class="custom-control custom-radio">
-              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-              <label class="custom-control-label" for="debit">Rapido</label>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <h4 class="mb-3">Payment</h4>
-          <div class="d-block my-3">
-            <div class="custom-control custom-radio">
-              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-              <label class="custom-control-label" for="credit">Credit card</label>
-            </div>
-            <div class="custom-control custom-radio">
-              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-              <label class="custom-control-label" for="debit">Debit card</label>
-            </div>
-            <div class="custom-control custom-radio">
-              <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-              <label class="custom-control-label" for="paypal">PayPal</label>
-            </div>
-          </div>
-        </div>
-        </div>
-<!--
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cc-name">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-              <small class="text-muted">Full name as displayed on card</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="cc-number">Credit card number</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required>
-              <div class="invalid-feedback">
-                Credit card number is required
-              </div>
-            </div>
+            <select-carrier v-model="order.carrier"></select-carrier>
           </div>
 
-          <div class="row">
-            <div class="col-md-3 mb-3">
-              <label for="cc-expiration">Expiration</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-              <div class="invalid-feedback">
-                Expiration date required
-              </div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="cc-cvv">CVV</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-              <div class="invalid-feedback">
-                Security code required
-              </div>
-            </div>
-          </div>
-  -->
 
           <hr class="mb-4">
-          <div class="mb-3">
-            <label for="email">Note <span class="text-muted">(Optional)</span></label>
-            <textarea class="form-control" id="note" placeholder=""></textarea>
-            <div class="invalid-feedback">
-              Please enter a valid email address for shipping updates.
-            </div>
+
+
+          <!--  INVOICE
+          ============================ -->
+          <div class="custom-control custom-checkbox">
+            <input v-model="order.iWantInvoice" id="i-want-invoice" type="checkbox" class="custom-control-input">
+            <label class="custom-control-label" for="i-want-invoice">I want invoice</label>
           </div>
+
+          <div v-if="order.iWantInvoice" class="mb-4">
+            <br><h4 class="mb-3">Invoice</h4>
+            <div class="row">
+              <div class="col-md-9 mb-3">
+                <label>Company name</label>
+                <input v-model="order.invoiceCompanyName" type="text" class="form-control" required>
+                <div class="invalid-feedback"> Valid company name is required. </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label>EIN <span class="text-muted">(Optional)</span></label>
+                <input v-model="order.invoiceEin" type="text" class="form-control">
+                <div class="invalid-feedback"> Valid last name is required. </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label>Phone</label>
+                <input v-model="order.invoicePhone" type="phone" class="form-control">
+                <div class="invalid-feedback"> Please enter a valid phone number.</div>
+              </div>
+              <div class="col-md-7 mb-3">
+                <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                <input v-model="order.invoiceEmail" type="email" class="form-control">
+                <div class="invalid-feedback"> Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Responsive Person</label>
+              <input v-model="order.invoiceMol" type="text" class="form-control" required>
+              <div class="invalid-feedback"> Please enter Material Responsive Person. </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Address</label>
+              <input v-model="order.invoiceAddress" type="text" class="form-control" required>
+              <small class="text-muted">Enter the full address</small>
+              <div class="invalid-feedback"> Please enter invoice address - with country and ZIP code. </div>
+            </div>
+
+          </div>
+
+
+
+
+          <hr class="mb-4">
+
+          <!--  PAYMENT
+          ============================ -->
+          <h4 class="mb-3">Payment</h4>
+          <div class="d-block my-3">
+            <select-payment></select-payment>
+          </div>
+
+
+          <hr class="mb-4">
+
+
+          <!--  Leave aNOTE
+          ============================ -->
+          <div class="mb-3">
+            <label>Note <span class="text-muted">(Optional)</span></label>
+            <textarea v-model="order.note" class="form-control"></textarea>
+          </div>
+
+
 
           <div class="custom-control custom-checkbox">
             <input type="checkbox" v-model="saveInformation" class="custom-control-input" id="save-info">
@@ -238,14 +226,23 @@
 module.exports = {
   data(){return {
     items: [],
-    invoiceAddressIsTheSame: true,
-    saveInformation: false
+    //iWantInvoice: false,
+    saveInformation: false,
+    noLogin: false,
+
+    account:{},
+    order:{
+      //shippingCarrier:"econt",
+      //paymentMethod:"credit-card"
+    }
   }},
   created(){
     this.items = this.$store.getters.productsCartItems
   },
   components:{
-    addressForm: httpVueLoader("./components/addressForm.vue")
+    //addressForm: httpVueLoader("./components/addressForm.vue")
+    selectPayment: httpVueLoader("./components/selectPayment.vue"),
+    selectCarrier: httpVueLoader("./components/selectCarrier.vue")
   },
   i18n:{
     messages:{
@@ -260,3 +257,6 @@ module.exports = {
   }
 }
 </script>
+<style scoped>
+  .price{ white-space: nowrap} 
+</style>

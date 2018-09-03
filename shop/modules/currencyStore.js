@@ -1,7 +1,7 @@
 const currencyStore = {
   state:{
       currency:"lv",
-      rates:{eur:1.99,usd:1.45}
+      rates:{eur:0.5,usd:0.7}
   },
   getters:{
     currency(state){ return state.currency },
@@ -19,10 +19,10 @@ const currencyStore = {
   actions:{
     init({state,dispatch,commit}){
       state.currency = localStorage.getItem("currency") || (navigator.language || navigator.userLanguage == 'bg' ? 'lv':'eur')
-      fetch("../store/currencyRates.json").then(ret=>ret.json())
-      .then(ret=>{
-        state.rates = ret
-      })
+      //fetch("../store/currencyRates.json").then(ret=>ret.json())
+      //.then(ret=>{
+      //  state.rates = ret
+      //})
 
     },
     setCurrency({state},c){
