@@ -98,7 +98,7 @@ module.exports = {
     },
     bg:{
       "All for 3d printing":"Всичко за 3D печатането",
-      "Here you can find everything about 3D singing.":"Тук можете да намерите всичко за 3D пеатането.Материали, модели, инструменти, продукти.",
+      "Here you can find everything about 3D singing.":"Тук можете да намерите всичко за 3D печатането.Материали, модели, инструменти, продукти.",
       //"Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.":"Нещо кратко и водещо за събирането по-долу - съдържанието му, създателят и т.н. Направете го кратък и сладък, но не прекалено кратък, така че хората просто не го пропускат изцяло.",
       //"Shop example is Bootstrap, but please download and customize it for yourself!":"Пример за магазин е Bootstrap, но моля, изтеглете и персонализирайте по своите нужди!",
       "New to Gearbox Starter ?":"Нов сте за Gearbox Starter ?"

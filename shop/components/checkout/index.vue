@@ -210,10 +210,10 @@
 
 
 
-          <div class="custom-control custom-checkbox">
+          <!-- <div class="custom-control custom-checkbox">
             <input type="checkbox" v-model="saveInformation" class="custom-control-input" id="save-info">
             <label class="custom-control-label" for="save-info">{{ $t('Save this information for next time') }}</label>
-          </div>
+          </div> -->
           <br>
           <button class="btn btn-primary btn-lg btn-block" type="submit">{{ $t('Continue to checkout') }}</button>
         </form>
@@ -248,9 +248,7 @@ module.exports = {
     messages:{
       'bg':{
         'Checkout form':"Форма за поръчване",
-
-
-        'Save this information for next time':"Запиши данните за следващия път",
+        //'Save this information for next time':"Запиши данните за следващия път",
         'Continue to checkout':"Приклчи поръчката"
       }
     }
