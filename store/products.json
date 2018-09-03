@@ -1,93 +1,258 @@
 [
     {
         "date": "2018-08-24",
-        "categories": "catone",
+        "categories": [
+            "free"
+        ],
         "_collection": "products",
-        "title": "Product one's title",
+        "title": " The Super Chief Loco - HO (1:87) scale",
         "id": 1535115723,
         "_rowVariant": "info",
-        "descr": "Десцриптион ис гоинг хере",
+        "descr": "",
         "image": "cover.jpeg",
-        "name": "Product One",
-        "price": 4.15,
-        "name_bg": "Продукт едно",
-        "title_bg": "Заглавието на продукт едно",
+        "name": "Santa Fe",
+        "price": 0,
+        "name_bg": "Santa Fe",
+        "title_bg": " The Super Chief Loco - HO (1:87) scale",
         "files": [
             {
-                "lastModified": 1534956264283,
-                "name": "Screenshot from 2018-08-22 19-44-24.png",
-                "size": 572665,
-                "type": "image/png"
+                "lastModified": 1535959125996,
+                "name": "24-thickbox_default.jpg",
+                "size": 42743,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535959179304,
+                "name": "31-thickbox_default.jpg",
+                "size": 66044,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535959203280,
+                "name": "33-thickbox_default.jpg",
+                "size": 85910,
+                "type": "image/jpeg"
             }
         ],
-        "packs": []
+        "packs": [],
+        "qty": 1
     },
     {
         "date": "2018-08-25",
         "categories": [
-            "catone"
+            "free"
         ],
         "_collection": "products",
-        "title": "Product 2",
-        "descr": "Description of product 2",
+        "title": "Freight wagon",
+        "descr": "",
         "author": "Svetlio",
         "id": 1535183238,
-        "name": "Product two",
-        "price": 120,
+        "name": "Freight wagon",
+        "price": 0,
         "_rowVariant": "info",
-        "name_bg": "Пр.две",
-        "title_bg": "",
-        "qty": 1,
+        "name_bg": "Товарен вагон",
+        "title_bg": "Товарен вагон",
+        "qty": 5,
         "files": [
             {
-                "lastModified": 1535190841705,
-                "name": "gearbox_bootstrap.png",
-                "size": 3709,
-                "type": "image/png"
+                "lastModified": 1535959732225,
+                "name": "28-thickbox_default.jpg",
+                "size": 82589,
+                "type": "image/jpeg"
             },
             {
-                "lastModified": 1534522160637,
-                "name": "lake-indigo-carmine-food-colour-500x500.jpg",
-                "size": 35038,
+                "lastModified": 1535959815117,
+                "name": "27-thickbox_default.jpg",
+                "size": 82189,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535959823505,
+                "name": "29-thickbox_default.jpg",
+                "size": 75976,
                 "type": "image/jpeg"
             }
         ],
-        "image": "",
+        "image": "cover.jpeg",
         "packs": []
     },
     {
         "date": "2018-08-27",
-        "categories": "catone,bulgarian",
+        "categories": [
+            "free"
+        ],
         "_collection": "products",
-        "title": "product3",
+        "title": "A stone wall",
         "id": 1535353960,
         "descr": "",
-        "name": "Pr. three",
-        "price": 12,
+        "name": "Wall",
+        "price": 0,
         "_rowVariant": "info",
         "qty": 0,
-        "name_bg": "Продукт три",
-        "title_bg": "",
+        "name_bg": "Стена",
+        "title_bg": "Каменна стена",
         "descr_bg": "",
-        "brand": "null",
-        "image": "cover.png",
+        "brand": 0,
+        "image": "cover.jpeg",
         "packs": []
     },
     {
         "date": "2018-08-27",
-        "categories": "bulgarian",
+        "categories": [
+            "free"
+        ],
         "_collection": "products",
-        "title": "product4",
+        "title": "Statue of a demon",
         "id": 1535353968,
-        "price": 8.2,
-        "name": "Product for",
+        "price": 0,
+        "name": "Demon",
         "_rowVariant": "info",
         "image": "cover.jpeg",
-        "name_bg": "Продукт Четири",
-        "title_bg": "",
+        "name_bg": "Демон",
+        "title_bg": "Статуя на демон",
         "descr": "",
         "descr_bg": "",
         "brand": "null",
-        "qty": 8
+        "qty": 8,
+        "files": [
+            {
+                "lastModified": 1535960029016,
+                "name": "47-thickbox_default.jpg",
+                "size": 64334,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535960043592,
+                "name": "46-thickbox_default.jpg",
+                "size": 62949,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535960037312,
+                "name": "45-thickbox_default.jpg",
+                "size": 60732,
+                "type": "image/jpeg"
+            }
+        ]
+    },
+    {
+        "date": "2018-09-03",
+        "categories": [
+            "filaments"
+        ],
+        "_collection": "products",
+        "name": "Black Filament",
+        "name_bg": "Черен филамент",
+        "title": "PLA Black filament - 1.75mm",
+        "title_bg": "PLA Черна нишка / филамент - 1.75мм",
+        "brand": "null",
+        "price": 25,
+        "qty": "null",
+        "id": 1535960387,
+        "image": "cover.jpeg",
+        "_rowVariant": "info"
+    },
+    {
+        "date": "2018-09-03",
+        "categories": [
+            "filaments"
+        ],
+        "_collection": "products",
+        "name": "White filament",
+        "name_bg": "Бял филамент",
+        "title": "PLA White filament - 1.75mm",
+        "title_bg": "PLA Бяла нишка / филамент - 1.75мм",
+        "price": 39.9,
+        "id": 1535960560,
+        "image": "cover.jpeg",
+        "brand": "null",
+        "qty": "null"
+    },
+    {
+        "date": "2018-09-03",
+        "categories": [
+            "filaments"
+        ],
+        "_collection": "products",
+        "name": "Red Filament",
+        "name_bg": "Червен филамент",
+        "title": "PLA Red filament - 0.75mm",
+        "title_bg": "PLA Червена нишка / филамент - 1.75мм",
+        "price": 39.9,
+        "id": 1535960796,
+        "_rowVariant": "info",
+        "image": "cover.jpeg"
+    },
+    {
+        "date": "2018-09-03",
+        "categories": "filaments",
+        "_collection": "products",
+        "name": "Filament",
+        "name_bg": "Филамент",
+        "title": "Filament SAMPLE - 1.75mm",
+        "title_bg": "Нишка / Филамент МОСТРА - 1.75 мм",
+        "price": 0.73,
+        "id": 1535961086,
+        "image": "cover.jpeg",
+        "files": [
+            {
+                "lastModified": 1535961136878,
+                "name": "39-thickbox_default.jpg",
+                "size": 13617,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535961141718,
+                "name": "36-thickbox_default.jpg",
+                "size": 223069,
+                "type": "image/jpeg"
+            },
+            {
+                "lastModified": 1535961147918,
+                "name": "37-thickbox_default.jpg",
+                "size": 17976,
+                "type": "image/jpeg"
+            }
+        ]
+    },
+    {
+        "date": "2018-09-03",
+        "categories": [
+            "promos",
+            "filaments"
+        ],
+        "_collection": "products",
+        "name": "PROMO Black filament",
+        "name_bg": "ПРОМОЦИЯ Черен филамент",
+        "title": "Quantity Promotion of black filament ",
+        "title_bg": "Количествена промоция на черен филамент",
+        "price": 45,
+        "qty": 10,
+        "id": 1535961363,
+        "image": "cover.jpeg",
+        "_rowVariant": "info",
+        "packs": [
+            {
+                "data": {
+                    "date": "2018-09-03",
+                    "categories": [
+                        "filaments"
+                    ],
+                    "_collection": "products",
+                    "name": "Black Filament",
+                    "name_bg": "Черен филамент",
+                    "title": "PLA Black filament - 1.75mm",
+                    "title_bg": "PLA Черна нишка / филамент - 1.75мм",
+                    "brand": "null",
+                    "price": 25,
+                    "qty": "null",
+                    "id": 1535960387,
+                    "image": "cover.jpeg",
+                    ".collection": "products"
+                },
+                "qty": 10,
+                "id": 1535960387
+            }
+        ]
     }
 ]

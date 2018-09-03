@@ -497,7 +497,7 @@ module.exports = {
 		},
 		addItemToPack(item){
 			item.id = item.data.id
-			let packs = this.selectedCopy.packs && this.selectedCopy.packs.length > 0 ? this.selectedCopy.packs : []
+			let packs = this.selectedCopy.packs && this.selectedCopy.packs.length > 0 ?this.selectedCopy.packs : []
 			let exists = packs.find(i=>item.data && i.data.id==item.data.id)
 			if(exists){
 				return alert("This item exists !")
@@ -506,8 +506,8 @@ module.exports = {
 				if(!item.data.id) return alert("No item selected")
 				if(item.qty < 1) return alert("Qty must be > 0")
 
+				packs.push( Object.assign({},item))
 				this.editField(this.selectedItem,"packs",packs)
-				packs.push(item)
 			}
 		},
 		removeItemFromPack(item){

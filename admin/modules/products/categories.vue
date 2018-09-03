@@ -63,6 +63,11 @@
 				<span v-if="typeof data.item.descr == 'string'" v-html="data.item.descr"></span>
 			</template>
 
+			<template slot="title_bg" slot-scope="data">
+				<b>{{ data.item.title_bg }}</b> <br>
+				<span v-if="typeof data.item.descr_bg == 'string'" v-html="data.item.descr_bg"></span>
+			</template>
+
 			<template slot="content" slot-scope="data">
 				<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);viewModal=true">View</b-btn>
 				<b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);fileModal=true">Edit</b-btn>
@@ -164,6 +169,15 @@
 		</b-modal>
 
 
+		<!-- Modal COLLECTION -->
+		<b-modal v-model="collectionModal"  :no-fade="noFade"
+			title="Change Collection"
+			@ok="changeItemCollection" ok-title="Change" cancel-variant="link"
+		>
+			<b-form-group label="">
+					<b-form-radio-group v-model="selectedCopy['.collection']" :options="collections" stacked> </b-form-radio-group>
+			</b-form-group>
+		</b-modal>
 
 
 	</div>
@@ -177,15 +191,16 @@ module.exports = {
 
 		title: "Products Categories",
 		itemsUrl: "/Products",
-		collections: ["productsCategories"],
+		collections: ["productsCategories","productCategories_DISABLED"],
 		selectedCollections: ["productsCategories"],
 
 		fields:[
 		  //{ key:'isActive',sortable:true },
-		  //{ key: '.collection', sortable:true },
+		  { key: '.collection', sortable:true },
 		  { key:'image'},
 		  { key:'id',  sortable:true },
-		  { key:'title', label:"Title", sortable:true, tdClass:"w-50" },
+		  { key:'title', label:"Title", sortable:true, tdClass:"w-40" },
+			{ key:'title_bg',sortable:true, tdClass:"w-40"},
 		  { key:'actions', class:"text-right" },
 		  //{ key:'content', label:"HTML", class:"text-right" },
 
@@ -316,7 +331,22 @@ module.exports = {
 			}
 			return true
 		},
+		changeItemCollection(){
+			let newCollection = this.selectedCopy['.collection']
+			let oldCollection = this.selectedItem[".collection"]
+			let oldCollectionDir = oldCollection+"/"+this.selectedCopy.id
 
+			newCollectionDir     = newCollection +"/"+this.selectedCopy.id
+			this.selectedCopy[".collection"] = newCollection
+
+
+			this.$store.dispatch("moveFile", {from:oldCollectionDir,to:newCollectionDir})
+				.then( ret=>{ if(ret.ok) {
+					this.deleteItem()
+					this.newItem()
+					this.fetchCollections() // refreshing
+				}})
+		},
 
 		/* Files Services */
 

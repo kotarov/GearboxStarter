@@ -1,20 +1,45 @@
 [
     {
-        "id": "catone",
-        "title": "Product Category One",
+        "id": "promos",
+        "title": "Promos",
         "image": "",
-        "descr": "Opisanie",
+        "descr": "All promotions in one place",
         "_collection": "productsCategories",
-        "title_bg": "Продуктова категория ЕДНО",
+        "title_bg": "Промоции",
+        "descr_bg": "Всички промоции на едно място",
         "_rowVariant": "info"
     },
     {
         "_collection": "productsCategories",
-        "id": "bulgarian",
-        "title": "Bulgarian items",
-        "title_bg": "Български елементи",
+        "id": "filaments",
+        "title": "Filaments",
+        "title_bg": "Филаменти",
         "_rowVariant": "info",
-        "descr": "This is the bulgarian articles description",
-        "descr_bg": "Описанието на българските артикули"
+        "descr": "Thread for 3D printing",
+        "descr_bg": "Нишка за 3D печатане"
+    },
+    {
+        "_collection": "productsCategories",
+        "id": "modelingtools",
+        "title": "Tools",
+        "title_bg": "Инструменти",
+        "descr": "Modeling tools",
+        "descr_bg": "Инструменти за моделиране"
+    },
+    {
+        "_collection": "productsCategories",
+        "id": "parts",
+        "title": "Parts",
+        "title_bg": "Части",
+        "descr_bg": "Свободни 3D модели за принтиране",
+        "descr": "Free 3D models for printing"
+    },
+    {
+        "_collection": "productsCategories",
+        "id": "free",
+        "title": "Free",
+        "title_bg": "Безплатни",
+        "descr": "Free files for Download",
+        "descr_bg": "Безплатни файлове за сваляне"
     }
 ]

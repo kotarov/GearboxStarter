@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/img/favicon.ico">
 
-    <title>Your Shop Name</title>
+    <title>SMURFs Shop</title>
 
      <!-- Core -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css"/>
@@ -26,12 +26,12 @@
         <div class="container d-flex justify-content-start" style="">
           <router-link to="/" class="navbar-brand d-flex align-items-center">
             <!-- <span v-if="i18n.locale=='bg'">[ Името на магазина ]</span> -->
-            <span _v-else>Your Shop Name</span>
+            <span _v-else>SMURF Ltd</span>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </router-link>
           <span class="text-white h5 m-0">
-            <strong v-if="i18n.locale=='bg'">0988 66 55 44</strong>
-            <strong v-else>+359 988 66 55 44</strong>
+            <strong v-if="i18n.locale=='bg'">0888 161 383</strong>
+            <strong v-else>+359 888 161 383</strong>
           </span>
           <span>
             <select class="btn-link btn-sm text-white" style="margin-left:2.5rem" @change.prevent.stop="setLocale(event.target.value);return false">
@@ -69,19 +69,20 @@
           <shopping-cart></shopping-cart>
 
           <div v-if="this.$store.getters.productsCartItems.length > 0" class="my-0 row col-md-10" style="padding:0 1em" c=" col-md-3 col-lg-4">
-              <router-link to="/Checkout" class="btn btn-primary my-1 col-md-5 offset-md-0 _btn-lg"
+              <a href="#" class="btn btn-outline-light my-1 col-md-3"
+                data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader">{{ $t('Close') }}</a>
+
+              <router-link to="/Checkout" class="btn btn-primary my-1 offset-md-1 col-md-5 offset-md-0"
                 data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader">{{ $t('Checkout') }}</router-link>
 
-                <a href="#" class="btn btn-outline-light my-1 col-md-3 offset-md-1 _btn-lg"
-                  data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader">{{ $t('Close') }}</a>
 
                 <div class="row"><br>&nbsp;</div>
           </div>
           <div class="h4 text-right" style="color:#fff"> <br>
-              <span style="white-space:nowrap"><small class="text-muted">{{ $t('Tel.') }}:</small> 0988 66 55 44;</span>
+              <span style="white-space:nowrap"><small class="text-muted">{{ $t('Tel.') }}:</small>+359 (0) 888 161 383;</span>
               &nbsp;&nbsp;
               <span style="white-space:nowrap">
-                <small class="text-muted">Email:</small> <a href="mailto:demo@demo.com"class="text-white" >demo@demo.com</a></span>
+                <small class="text-muted">Email:</small> <a href="mailto:nenchev@gie.bg"class="text-white" > nenchev@gie.bg</a></span>
           </div>
 
         </div>

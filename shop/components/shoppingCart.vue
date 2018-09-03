@@ -29,7 +29,7 @@
               </td>
               <td align="right" width="1em">
                 <button @click="$store.dispatch('removeProductFromCart',item)"
-                  class="btn btn-sm btn-danger">{{ $t('Del') }}</button>
+                  class="btn btn-sm btn-danger">&times;</button>
               </td>
             </tr>
           </tbody>

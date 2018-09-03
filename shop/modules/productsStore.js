@@ -11,8 +11,9 @@ const productsStore = {
 		homeProducts(state)			{ return state.items.sort((a,b)=>{
 			return Date.parse(b.date) - Date.parse(a.date)
 		} ).slice(0,6) },
+		allProductCategories(state){ return state.categories },
 		//mainMenuCategories(state)	{return state.categories.filter( value => true ) },
-
+/*
 		categoryFromId(state){
 			return function(idCategory){
 				let cat = state.categories.filter( v => {
@@ -21,65 +22,54 @@ const productsStore = {
 				return cat ? cat[0] : {}
 			}
 		},
-
-		itemCategories(state){
-			return function(item){
+*/
+/*
+		itemCategories(state){ return function(item){
 				let retCats = []
 				let ids = (item.categories || '').split(",")
 				for(let i of state.categories) {
 					if(ids.indexOf(i.id)>-1) retCats.push(i)
 				}
 				return retCats
-			}
-		},
-
-		imageUrl(state){
-			return function(item){
+		}},
+*/
+		imageUrl(state){ return function(item){
 				return '../store/products/'+item.id+'/'+item.image
-			}
-		},
-		articleUrl(state){
-			return function(item){
+		}},
+		articleUrl(state){ return function(item){
 				return "/"+item.date+"/"+ item.title.replace(/\ /g,"_")
+		}},
+		productContainers(state,getters){ return function(item){
+			let ret = []
+			//console.log( getters.products )
+			for(let p of getters.products){
+					if(p.packs && p.packs.length > 0){
+						let exists = p.packs.filter(i=>i.id == item.id)
+						if(exists.length > 0) ret.push(p)
+					}
 			}
-		},
-
-		historyInfo(state){
-			let ret = {}
-
-	        for(let i of state.items ){
-	          let d = new Date(i.date)
-	          let dd = d.getFullYear()+"/"+(d.getMonth()+1)
-
-	          if(Object.keys(ret).indexOf(dd) == -1){
-	          	ret[dd] = 1
-	          } else {
-	          	ret[dd]++
-	          }
-	        }
-	        return Object.keys( ret ).sort().reduce(function( result, key ){
-	        	result[key] = ret[key]
-	        	return result
-	        },{})
-		}
+			return ret
+		}}
 	},
+/************/
+
 	actions:{
 		init({state, dispatch, commit}){
 			dispatch("fetchProducts")
-			//dispatch("fetchProductCategories")
+			dispatch("fetchProductCategories")
 		},
 		fetchProducts({state, dispatch, commit}){
 			let url = "../store/products.json"
 			fetch(url).then(ret=>ret.json())
 			.then(ret=>{ state.items = ret })
 		},
-		/*
+
 		fetchProductCategories({state,dispatch,commit}){
-			let url = "../store/articlesCategories.json"
+			let url = "../store/productsCategories.json"
 			fetch(url).then(ret=>ret.json())
 			.then(ret=>{state.categories=ret})
 		},
-		*/
+
 		/*
 		fetchContent({state,dispatch,commit},article){
 			let url = "../store/articles/"+article.id+"/content.html"
