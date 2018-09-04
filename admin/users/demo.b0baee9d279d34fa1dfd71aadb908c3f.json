@@ -7,7 +7,7 @@
 		{ "title": "Dashboard", 	"icon":"home", 		"path":"/Dashboard",			"component":"dashboard"	},
 		{ "title": "Articles", 		"icon":"book", 		"path":"/Articles",				"component":"articles"	},
 		{								 														"path":"/Articles/Categories",  "component":"articles/categories.vue" },
-		{ "title": "Produts", 		"icon":"box", 		"path":"/Products",				"component":"products"},
+		{ "title": "Catalog", 		"icon":"box", 		"path":"/Products",				"component":"products"},
 		{ 																					"path":"/Products/Categories",			"component":"products/categories.vue"}
 	],
 

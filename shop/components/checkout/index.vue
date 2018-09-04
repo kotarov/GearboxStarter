@@ -59,7 +59,6 @@
 
         <form @submit="alert('Споко и това ще стане !')" class="needs-validation" _novalidate>
 
-
           <!-- LOGIN
           ========================  -->
           <div class="custom-control custom-checkbox float-right">
@@ -68,7 +67,12 @@
           </div>
           <h4 class="mb-3">Account</h4>
 
-          <div v-if="!noLogin" class="row">
+          <div v-if="!noLogin" class="row container">
+            <div class="col-2"></div>
+            <button type="button" class="px-5 btn btn-primary" data-toggle="modal" data-target="#loginModal">
+              Login
+            </button>
+<!--
             <div class="col-md-6 mb-3">
               <label>User name</label>
               <input v-model="account.userName" type="text" class="form-control" placeholder="" required>
@@ -79,8 +83,8 @@
               <input v-model="account.userPassword" type="password" class="form-control" placeholder="" required>
               <div class="invalid-feedback"> Password is required. </div>
             </div>
+-->
           </div>
-
 
 
           <hr class="mb-4">

@@ -112,7 +112,7 @@ module.exports = {
   background-size: cover;
   background-position: top;
   color: #fff;
-
+  min-height:350px;
 }
 .jumbotron .text-muted {
   background-color: rgba(0,0,0,0.15);

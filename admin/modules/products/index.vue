@@ -12,7 +12,7 @@
 				</b-input-group>
 
 				<b-btn-group size="sm" class="ml-2">
-					<b-btn variant="outline-secondary" @click="newModal=true">New</b-btn>
+					<b-btn variant="outline-secondary" @click="initNewItem({});newModal=true">New Product</b-btn>
 					<b-btn variant="outline-secondary" @click="$router.push(categoriesUrl)">Categories</b-btn>
 					<b-btn variant="outline-secondary" @click="fetchCollections()"><i class="fa fa-refresh"></i> Reload</b-btn>
 				</b-btn-group>
@@ -106,7 +106,8 @@
 
 			<template slot="actions" slot-scope="data">
 					<div style="text-align:center; white-space:nowrap">
-						 <button class="btn btn-outline-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
+						 <button class="btn btn-secondary btn-xs" @click="selectItem(data.item);editModal=true">Edit</button>
+						 <b-btn size="xs" variant="outline-secondary" @click="selectItem(data.item);initNewItem(data.item);newModal=true;" title="Duplicate">New</b-btn>
 						 <b-btn size="xs" variant="outline-danger" @click="selectItem(data.item);deleteModal=true">Del</b-btn>
 					</div>
 			</template>
@@ -134,8 +135,8 @@
 
 
 		<!-- Modal NEW -->
-		<b-modal v-model="newModal" title="New" @shown="initNewItem()" c="selectedCopy={}" :no-fade="noFade"
-			ok-title="Save" cancel-variant="link" @ok="newItem"
+		<b-modal v-model="newModal" title="New" _shown="initNewItem({})" :no-fade="noFade"
+			ok-title="Create NEW" ok-variant="default" cancel-variant="link" @ok="newItem"
 		>
 			<b-form-group label="Collection:*" horizontal>
 				<b-form-select v-model="selectedCopy['.collection']" :options="selectedCollections"></b-form-select></b-form-group>
@@ -161,7 +162,7 @@
 		<!-- Modal EDIT -->
 		<b-modal v-model="editModal" title="Edit"  :no-fade="noFade"
 			@show=""
-			@ok="editItem" ok-title="Save" cancel-title="Exit" cancel-variant="link"
+			@ok="editItem" ok-title="Save" ok-variant="primary" cancel-title="Exit" cancel-variant="link"
 		>
 			<b-form-group label="ID:"     horizontal> <b>{{ selectedCopy.id }}</b> </b-form-group>
 			<b-form-group label="Name:*"  horizontal> <b-form-input type="text" v-model="selectedCopy.name"></b-form-input> </b-form-group>
@@ -334,7 +335,7 @@ module.exports = {
     */
     /* ENTRIES */
 
-    title: "Products",
+    title: "Catalog",
     categoriesUrl:"/Products/Categories",
 		collections: ["products","products_DISABLED","products_DELETED"],
 		selectedCollections: ["products","products_DISABLED"],
@@ -635,19 +636,21 @@ module.exports = {
           this.fetchCollections() // refreshing
 				}})
 		},
-		initNewItem(){
+		initNewItem(item){
 			let d = new Date()
-			this.selectedCopy = {
+			if( typeof item !== 'object') item = {}
+			this.selectedCopy = Object.assign({},item,{
 				date: d.toISOString().slice(0,10),
-				categories: ""
-			}
+				categories: item.categories ? Array.from(item.categories) : []
+			})
+			delete this.selectedCopy.id
 		},
 		newItem(event){
 			if( !this.checkRequired( this.selectedCopy ) ){
 				if(event) event.preventDefault();
 				return
 			}
-
+			delete this.selectedCopy.id
 			let data = {collection: this.selectedCopy[".collection"], items: this.items, data: this.selectedCopy}
 			this.$store.dispatch("postInsertItem",data)
 				.then( ret=>{ if(ret && ret.ok){

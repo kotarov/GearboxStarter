@@ -12,8 +12,8 @@
 				</b-input-group>
 
 				<b-btn-group size="sm" class="ml-2">
-					<b-btn variant="outline-secondary" @click="newModal=true">New</b-btn>
-					<b-btn variant="outline-secondary" @click="$router.push(itemsUrl)">Back to Items</b-btn>
+					<b-btn variant="outline-secondary" @click="newModal=true">New Category</b-btn>
+					<b-btn variant="outline-secondary" @click="$router.push(itemsUrl)">Products</b-btn>
 					<b-btn variant="outline-secondary" @click="fetchCollections()"><i class="fa fa-refresh"></i> Reload</b-btn>
 				</b-btn-group>
 			</div>
