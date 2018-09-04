@@ -256,5 +256,17 @@
         ],
         "descr": "Minimum quantity to buy is 10 peasies",
         "descr_bg": "Минимално количество за закупиване - 10парчета"
+    },
+    {
+        "date": "2018-09-04",
+        "categories": "filaments",
+        "_collection": "products",
+        "name": "Filament",
+        "name_bg": "Филамент",
+        "title": "Filament SAMPLE - 1.75mm",
+        "title_bg": "Нишка / Филамент МОСТРА - 1.75 мм",
+        "price": 0.73,
+        "_rowVariant": "info",
+        "id": 1536058414
     }
 ]

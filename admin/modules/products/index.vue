@@ -644,6 +644,9 @@ module.exports = {
 				categories: item.categories ? Array.from(item.categories) : []
 			})
 			delete this.selectedCopy.id
+			delete this.selectedCopy.files
+			delete this.selectedCopy.packs
+			delete this.selectedCopy.image
 		},
 		newItem(event){
 			if( !this.checkRequired( this.selectedCopy ) ){
